@@ -1,0 +1,1199 @@
+{
+	"name": "Basics - Text API Basics",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "synapsemlpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "9247f1fa-6181-4bc3-9884-8d9fe911e594"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"29cdb177-3e29-415d-b7d2-2d84f08954a0": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "1",
+										"1": "Microsoft released Windows 10",
+										"3": [
+											{
+												"entities": [
+													{
+														"name": "Microsoft",
+														"url": "https://en.wikipedia.org/wiki/Microsoft",
+														"dataSource": "Wikipedia",
+														"id": "Microsoft",
+														"language": "en",
+														"matches": [
+															{
+																"confidenceScore": 0.13,
+																"text": "Microsoft",
+																"offset": 0,
+																"length": 9
+															}
+														]
+													},
+													{
+														"name": "Windows 10",
+														"url": "https://en.wikipedia.org/wiki/Windows_10",
+														"dataSource": "Wikipedia",
+														"id": "Windows 10",
+														"language": "en",
+														"matches": [
+															{
+																"confidenceScore": 0.12,
+																"text": "Windows 10",
+																"offset": 19,
+																"length": 10
+															}
+														]
+													}
+												],
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "2",
+										"1": "In 1975, Bill Gates III and Paul Allen founded the company.",
+										"3": [
+											{
+												"entities": [
+													{
+														"name": "Bill Gates",
+														"url": "https://en.wikipedia.org/wiki/Bill_Gates",
+														"dataSource": "Wikipedia",
+														"id": "Bill Gates",
+														"language": "en",
+														"matches": [
+															{
+																"confidenceScore": 0.87,
+																"text": "Bill Gates III",
+																"offset": 9,
+																"length": 14
+															}
+														]
+													},
+													{
+														"name": "Paul Allen",
+														"url": "https://en.wikipedia.org/wiki/Paul_Allen",
+														"dataSource": "Wikipedia",
+														"id": "Paul Allen",
+														"language": "en",
+														"matches": [
+															{
+																"confidenceScore": 0.4,
+																"text": "Paul Allen",
+																"offset": 28,
+																"length": 10
+															}
+														]
+													}
+												],
+												"warnings": []
+											}
+										]
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "id",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "text",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "error",
+										"type": "StructType(StructField(response,StringType,true), StructField(status,StructType(StructField(protocolVersion,StructType(StructField(protocol,StringType,true), StructField(major,IntegerType,false), StructField(minor,IntegerType,false)),true), StructField(statusCode,IntegerType,false), StructField(reasonPhrase,StringType,true)),true))"
+									},
+									{
+										"key": "3",
+										"name": "replies",
+										"type": "ArrayType(StructType(StructField(entities,ArrayType(StructType(StructField(name,StringType,true), StructField(matches,ArrayType(StructType(StructField(confidenceScore,DoubleType,false), StructField(text,StringType,true), StructField(offset,IntegerType,false), StructField(length,IntegerType,false)),true),true), StructField(language,StringType,true), StructField(id,StringType,true), StructField(url,StringType,true), StructField(dataSource,StringType,true)),true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true), StructField(error-message,StringType,true)),true)"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"a830706e-9d35-4c8a-80ff-e14c5be149e8": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "en",
+										"1": "Hello world. This is some input text that I love.",
+										"3": [
+											{
+												"keyPhrases": [
+													"Hello world",
+													"input text"
+												],
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "fr",
+										"1": "Bonjour tout le monde",
+										"3": [
+											{
+												"keyPhrases": [
+													"Bonjour",
+													"monde"
+												],
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "es",
+										"1": "La carretera estaba atascada. Había mucho tráfico el día de ayer.",
+										"3": [
+											{
+												"keyPhrases": [
+													"mucho tráfico",
+													"día",
+													"carretera",
+													"ayer"
+												],
+												"warnings": []
+											}
+										]
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "lang",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "text",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "error",
+										"type": "StructType(StructField(response,StringType,true), StructField(status,StructType(StructField(protocolVersion,StructType(StructField(protocol,StringType,true), StructField(major,IntegerType,false), StructField(minor,IntegerType,false)),true), StructField(statusCode,IntegerType,false), StructField(reasonPhrase,StringType,true)),true))"
+									},
+									{
+										"key": "3",
+										"name": "replies",
+										"type": "ArrayType(StructType(StructField(keyPhrases,ArrayType(StringType,true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true), StructField(error-message,StringType,true)),true)"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"256c83d3-eebf-4b0a-b1ea-164bbbc079b4": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "Hello World",
+										"2": [
+											{
+												"detectedLanguage": {
+													"name": "English",
+													"iso6391Name": "en",
+													"confidenceScore": 1
+												},
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "Bonjour tout le monde",
+										"2": [
+											{
+												"detectedLanguage": {
+													"name": "French",
+													"iso6391Name": "fr",
+													"confidenceScore": 0.88
+												},
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "La carretera estaba atascada. Había mucho tráfico el día de ayer.",
+										"2": [
+											{
+												"detectedLanguage": {
+													"name": "Spanish",
+													"iso6391Name": "es",
+													"confidenceScore": 1
+												},
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "你好",
+										"2": [
+											{
+												"detectedLanguage": {
+													"name": "Chinese",
+													"iso6391Name": "zh",
+													"confidenceScore": 1
+												},
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "こんにちは",
+										"2": [
+											{
+												"detectedLanguage": {
+													"name": "Japanese",
+													"iso6391Name": "ja",
+													"confidenceScore": 1
+												},
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": ":) :( :D",
+										"2": [
+											{
+												"detectedLanguage": {
+													"name": "(Unknown)",
+													"iso6391Name": "(Unknown)",
+													"confidenceScore": 0
+												},
+												"warnings": []
+											}
+										]
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "text",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "error",
+										"type": "StructType(StructField(response,StringType,true), StructField(status,StructType(StructField(protocolVersion,StructType(StructField(protocol,StringType,true), StructField(major,IntegerType,false), StructField(minor,IntegerType,false)),true), StructField(statusCode,IntegerType,false), StructField(reasonPhrase,StringType,true)),true))"
+									},
+									{
+										"key": "2",
+										"name": "language",
+										"type": "ArrayType(StructType(StructField(detectedLanguage,StructType(StructField(name,StringType,true), StructField(iso6391Name,StringType,true), StructField(confidenceScore,DoubleType,false)),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true), StructField(error-message,StringType,true)),true)"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"2685be56-352c-4e00-b00a-2387f7be6ea6": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "1",
+										"1": "en",
+										"2": "I had a wonderful trip to Seattle last week.",
+										"4": [
+											{
+												"entities": [
+													{
+														"confidenceScore": 0.74,
+														"text": "trip",
+														"offset": 18,
+														"category": "Event",
+														"length": 4
+													},
+													{
+														"confidenceScore": 1,
+														"text": "Seattle",
+														"subcategory": "GPE",
+														"offset": 26,
+														"category": "Location",
+														"length": 7
+													},
+													{
+														"confidenceScore": 0.8,
+														"text": "last week",
+														"subcategory": "DateRange",
+														"offset": 34,
+														"category": "DateTime",
+														"length": 9
+													}
+												],
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "2",
+										"1": "en",
+										"2": "I visited Space Needle 2 times.",
+										"4": [
+											{
+												"entities": [
+													{
+														"confidenceScore": 0.96,
+														"text": "Space Needle",
+														"offset": 10,
+														"category": "Location",
+														"length": 12
+													},
+													{
+														"confidenceScore": 0.8,
+														"text": "2",
+														"subcategory": "Number",
+														"offset": 23,
+														"category": "Quantity",
+														"length": 1
+													}
+												],
+												"warnings": []
+											}
+										]
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "id",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "language",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "text",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "error",
+										"type": "StructType(StructField(response,StringType,true), StructField(status,StructType(StructField(protocolVersion,StructType(StructField(protocol,StringType,true), StructField(major,IntegerType,false), StructField(minor,IntegerType,false)),true), StructField(statusCode,IntegerType,false), StructField(reasonPhrase,StringType,true)),true))"
+									},
+									{
+										"key": "4",
+										"name": "replies",
+										"type": "ArrayType(StructType(StructField(entities,ArrayType(StructType(StructField(text,StringType,true), StructField(category,StringType,true), StructField(subcategory,StringType,true), StructField(offset,IntegerType,true), StructField(length,IntegerType,true), StructField(confidenceScore,DoubleType,false)),true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true), StructField(error-message,StringType,true)),true)"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"63c68834-dbe0-4cd1-9c5f-0b3bbbb4a07a": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "1",
+										"1": "en",
+										"2": "My SSN is 859-98-0987",
+										"4": [
+											{
+												"entities": [
+													{
+														"confidenceScore": 0.65,
+														"text": "859-98-0987",
+														"offset": 10,
+														"category": "USSocialSecurityNumber",
+														"length": 11
+													}
+												],
+												"redactedText": "My SSN is ***********",
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "2",
+										"1": "en",
+										"2": "Your ABA number - 111000025 - is the first 9 digits in the lower left hand corner of your personal check.",
+										"4": [
+											{
+												"entities": [
+													{
+														"confidenceScore": 0.8,
+														"text": "111000025",
+														"offset": 18,
+														"category": "PhoneNumber",
+														"length": 9
+													},
+													{
+														"confidenceScore": 0.75,
+														"text": "111000025",
+														"offset": 18,
+														"category": "ABARoutingNumber",
+														"length": 9
+													},
+													{
+														"confidenceScore": 0.65,
+														"text": "111000025",
+														"offset": 18,
+														"category": "NZSocialWelfareNumber",
+														"length": 9
+													}
+												],
+												"redactedText": "Your ABA number - ********* - is the first 9 digits in the lower left hand corner of your personal check.",
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "3",
+										"1": "en",
+										"2": "Is 998.214.865-68 your Brazilian CPF number?",
+										"4": [
+											{
+												"entities": [],
+												"redactedText": "Is 998.214.865-68 your Brazilian CPF number?",
+												"warnings": []
+											}
+										]
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "id",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "language",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "text",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "PII_cb8aad526bca_error",
+										"type": "StructType(StructField(response,StringType,true), StructField(status,StructType(StructField(protocolVersion,StructType(StructField(protocol,StringType,true), StructField(major,IntegerType,false), StructField(minor,IntegerType,false)),true), StructField(statusCode,IntegerType,false), StructField(reasonPhrase,StringType,true)),true))"
+									},
+									{
+										"key": "4",
+										"name": "response",
+										"type": "ArrayType(StructType(StructField(entities,ArrayType(StructType(StructField(text,StringType,true), StructField(category,StringType,true), StructField(subcategory,StringType,true), StructField(offset,IntegerType,true), StructField(length,IntegerType,true), StructField(confidenceScore,DoubleType,false)),true),true), StructField(redactedText,StringType,true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true), StructField(error-message,StringType,true)),true)"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"ed94e5f9-bb9e-494d-bd3a-a9d045ffc63f": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "I am so happy today, its sunny!",
+										"1": "en-US",
+										"3": [
+											{
+												"sentiment": "positive",
+												"confidenceScores": {
+													"positive": 0.97,
+													"neutral": 0.03,
+													"negative": 0
+												},
+												"sentences": [
+													{
+														"sentiment": "positive",
+														"confidenceScores": {
+															"positive": 0.97,
+															"neutral": 0.03,
+															"negative": 0
+														},
+														"text": "I am so happy today, its sunny!",
+														"offset": 0,
+														"length": 31
+													}
+												],
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "I am frustrated by this rush hour traffic",
+										"1": "en-US",
+										"3": [
+											{
+												"sentiment": "negative",
+												"confidenceScores": {
+													"positive": 0,
+													"neutral": 0,
+													"negative": 1
+												},
+												"sentences": [
+													{
+														"sentiment": "negative",
+														"confidenceScores": {
+															"positive": 0,
+															"neutral": 0,
+															"negative": 1
+														},
+														"text": "I am frustrated by this rush hour traffic",
+														"offset": 0,
+														"length": 41
+													}
+												],
+												"warnings": []
+											}
+										]
+									},
+									{
+										"0": "The cognitive services on spark aint bad",
+										"1": "en-US",
+										"3": [
+											{
+												"sentiment": "positive",
+												"confidenceScores": {
+													"positive": 0.97,
+													"neutral": 0.01,
+													"negative": 0.02
+												},
+												"sentences": [
+													{
+														"sentiment": "positive",
+														"confidenceScores": {
+															"positive": 0.97,
+															"neutral": 0.01,
+															"negative": 0.02
+														},
+														"text": "The cognitive services on spark aint bad",
+														"offset": 0,
+														"length": 40
+													}
+												],
+												"warnings": []
+											}
+										]
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "text",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "language",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "error",
+										"type": "StructType(StructField(response,StringType,true), StructField(status,StructType(StructField(protocolVersion,StructType(StructField(protocol,StringType,true), StructField(major,IntegerType,false), StructField(minor,IntegerType,false)),true), StructField(statusCode,IntegerType,false), StructField(reasonPhrase,StringType,true)),true))"
+									},
+									{
+										"key": "3",
+										"name": "sentiment",
+										"type": "ArrayType(StructType(StructField(sentiment,StringType,true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true), StructField(confidenceScores,StructType(StructField(positive,DoubleType,false), StructField(neutral,DoubleType,false), StructField(negative,DoubleType,false)),true), StructField(sentences,ArrayType(StructType(StructField(text,StringType,true), StructField(sentiment,StringType,true), StructField(confidenceScores,StructType(StructField(positive,DoubleType,false), StructField(neutral,DoubleType,false), StructField(negative,DoubleType,false)),true), StructField(offset,IntegerType,false), StructField(length,IntegerType,false)),true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(error-message,StringType,true)),true)"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/61691a9f-545c-41c4-baf2-d901d60ef9aa/resourceGroups/cgmsynapsetest/providers/Microsoft.Synapse/workspaces/cgmsynapsetest/bigDataPools/synapsemlpool",
+				"name": "synapsemlpool",
+				"type": "Spark",
+				"endpoint": "https://cgmsynapsetest.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/synapsemlpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.1",
+				"nodeCount": 3,
+				"cores": 8,
+				"memory": 56,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# ** Basic Cognitive Services Examples **\r\n",
+					"\r\n",
+					"This set of examples is intended to illustrate the basics of calling the various cognitive serices apis via the SynapseML libraries.  These samples are intended to be functional with minimal external dependencies therefore they typically work on extremely small data sets and to not load external files except where absolutely necessary (ie. images).\r\n",
+					"\r\n",
+					"The majority of these examples are taken from the Synapse ML examples: https://microsoft.github.io/SynapseML/docs/documentation/transformers/transformers_cognitive/ \r\n",
+					"They have been modified slightly to account for pulling keys from key vault, and also to beautify the results and make them easier to read when executing in a jupyter notebook.  They are included here for the sake of completeness and also  \r\n",
+					"\r\n",
+					"Several of the APIs illustrated in these examples will be illustrated in greater detail on other examples with larger datasets and leveraging external files.\r\n",
+					"\r\n",
+					"## ***Prerequisites ***\r\n",
+					"\r\n",
+					"1. A provisioned Synapse Workspace with a Spark 3.1 pool to run this notbook on.\r\n",
+					"1. A keyvault to store the cognitive services key necessary for executing these examples.\r\n",
+					"1. A provisioined cognitive services multi-endpont api instance.\r\n",
+					"\r\n",
+					"## *** Setup ***\r\n",
+					"\r\n",
+					"This first part is necessary to setup the cluster to leverage the SynapseML libraries which are loaded from Maven coordinates."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"%%configure -f\r\n",
+					"{\r\n",
+					"  \"name\": \"synapseml\",\r\n",
+					"  \"conf\": {\r\n",
+					"      \"spark.jars.packages\": \"com.microsoft.azure:synapseml_2.12:0.9.5-13-d1b51517-SNAPSHOT\",\r\n",
+					"      \"spark.jars.repositories\": \"https://mmlspark.azureedge.net/maven\",\r\n",
+					"      \"spark.jars.excludes\": \"org.scala-lang:scala-reflect,org.apache.spark:spark-tags_2.12,org.scalactic:scalactic_2.12,org.scalatest:scalatest_2.12\",\r\n",
+					"      \"spark.yarn.user.classpath.first\": \"true\"\r\n",
+					"  }\r\n",
+					"}"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"To start we'll import a bunch of necessary modules and setup values for some resoruces like storage accounts, container, and keyvault that we'll use throughout the rest of the example."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from synapse.ml.cognitive import *\r\n",
+					"import pyspark\r\n",
+					"from pyspark.sql.functions import *  #needed for basic column manipulation like flattening json\r\n",
+					"\r\n",
+					"#Input your key vault information.  The secret we need is for the cognitive services multi-service resource.\r\n",
+					"#set the name of your key vault\r\n",
+					"keyVaultName = \"cgmsynapsevault\"\r\n",
+					"#set the region where you cognitive service is deployed\r\n",
+					"serviceLocation = \"eastus2\"\r\n",
+					"cogServicesKey = mssparkutils.credentials.getSecret(keyVaultName, \"cogsvcskey\")\r\n",
+					"\r\n",
+					""
+				],
+				"execution_count": 8
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## ** Text Analytics **\r\n",
+					"\r\n",
+					"https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/\r\n",
+					"\r\n",
+					"*** Entity Detection ***\r\n",
+					"\r\n",
+					"This api provides named entity recognition\r\n",
+					"\r\n",
+					"https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/named-entity-recognition/overview"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"from synapse.ml.cognitive import *\r\n",
+					"\r\n",
+					"\r\n",
+					"df = spark.createDataFrame([\r\n",
+					"    (\"1\", \"Microsoft released Windows 10\"),\r\n",
+					"    (\"2\", \"In 1975, Bill Gates III and Paul Allen founded the company.\")\r\n",
+					"], [\"id\", \"text\"])\r\n",
+					"\r\n",
+					"entity = (EntityDetector()\r\n",
+					"      .setSubscriptionKey(cogServicesKey)\r\n",
+					"      .setLocation(serviceLocation)\r\n",
+					"      .setLanguage(\"en\")\r\n",
+					"      .setOutputCol(\"replies\")\r\n",
+					"      .setErrorCol(\"error\"))\r\n",
+					"\r\n",
+					"results = entity.transform(df)\r\n",
+					"display(results)"
+				],
+				"execution_count": 11
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"*** Key Phrase Extraction ***\r\n",
+					"\r\n",
+					"This API extracts key phrases of a larger body of text.\r\n",
+					"\r\n",
+					"https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/key-phrase-extraction/overview"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"df = spark.createDataFrame([\r\n",
+					"    (\"en\", \"Hello world. This is some input text that I love.\"),\r\n",
+					"    (\"fr\", \"Bonjour tout le monde\"),\r\n",
+					"    (\"es\", \"La carretera estaba atascada. Había mucho tráfico el día de ayer.\")\r\n",
+					"], [\"lang\", \"text\"])\r\n",
+					"\r\n",
+					"keyPhrase = (KeyPhraseExtractor()\r\n",
+					"            .setSubscriptionKey(cogServicesKey)\r\n",
+					"            .setLocation(serviceLocation)\r\n",
+					"            .setLanguageCol(\"lang\")\r\n",
+					"            .setOutputCol(\"replies\")\r\n",
+					"            .setErrorCol(\"error\"))\r\n",
+					"\r\n",
+					"results = keyPhrase.transform(df)\r\n",
+					"display(results)"
+				],
+				"execution_count": 13
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"*** Language Detection ***\r\n",
+					"\r\n",
+					"This API detects which language is being used in the provided text.\r\n",
+					"\r\n",
+					"https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/language-detection/overview"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"df = spark.createDataFrame([\r\n",
+					"  (\"Hello World\",),\r\n",
+					"  (\"Bonjour tout le monde\",),\r\n",
+					"  (\"La carretera estaba atascada. Había mucho tráfico el día de ayer.\",),\r\n",
+					"  (\"你好\",),\r\n",
+					"  (\"こんにちは\",),\r\n",
+					"  (\":) :( :D\",)\r\n",
+					"], [\"text\",])\r\n",
+					"\r\n",
+					"language = (LanguageDetector()\r\n",
+					"            .setSubscriptionKey(cogServicesKey)\r\n",
+					"            .setLocation(serviceLocation)\r\n",
+					"            .setTextCol(\"text\")\r\n",
+					"            .setOutputCol(\"language\")\r\n",
+					"            .setErrorCol(\"error\"))\r\n",
+					"\r\n",
+					"results = language.transform(df)\r\n",
+					"display(results)"
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"*** Named Entity Recognition ***\r\n",
+					"\r\n",
+					"This API detects finds people, places, organizations, and quantities in the provided text.\r\n",
+					"\r\n",
+					"https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/named-entity-recognition/overview"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"df = spark.createDataFrame([\r\n",
+					"    (\"1\", \"en\", \"I had a wonderful trip to Seattle last week.\"),\r\n",
+					"    (\"2\", \"en\", \"I visited Space Needle 2 times.\")\r\n",
+					"], [\"id\", \"language\", \"text\"])\r\n",
+					"\r\n",
+					"ner = (NER()\r\n",
+					"      .setSubscriptionKey(cogServicesKey)\r\n",
+					"      .setLocation(serviceLocation)\r\n",
+					"      .setLanguageCol(\"language\")\r\n",
+					"      .setOutputCol(\"replies\")\r\n",
+					"      .setErrorCol(\"error\"))\r\n",
+					"\r\n",
+					"results = ner.transform(df)\r\n",
+					"display(results)"
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"*** PII Detection ***\r\n",
+					"\r\n",
+					"This API discovers Personally Identifiable Information in the provided text.\r\n",
+					"\r\n",
+					"https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/personally-identifiable-information/overview"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"df = spark.createDataFrame([\r\n",
+					"    (\"1\", \"en\", \"My SSN is 859-98-0987\"),\r\n",
+					"    (\"2\", \"en\",\r\n",
+					"      \"Your ABA number - 111000025 - is the first 9 digits in the lower left hand corner of your personal check.\"),\r\n",
+					"    (\"3\", \"en\", \"Is 998.214.865-68 your Brazilian CPF number?\")\r\n",
+					"], [\"id\", \"language\", \"text\"])\r\n",
+					"\r\n",
+					"pii = (PII()\r\n",
+					"      .setSubscriptionKey(cogServicesKey)\r\n",
+					"      .setLocation(serviceLocation)\r\n",
+					"      .setLanguage(\"en\")\r\n",
+					"      .setOutputCol(\"response\"))\r\n",
+					"\r\n",
+					"results = pii.transform(df)\r\n",
+					"display(results)"
+				],
+				"execution_count": 16
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"*** Sentiment Analysis ***\r\n",
+					"\r\n",
+					"This API detects the sentiment of the provided text.\r\n",
+					"\r\n",
+					"https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/sentiment-opinion-mining/overview"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"df = spark.createDataFrame([\r\n",
+					"  (\"I am so happy today, its sunny!\", \"en-US\"),\r\n",
+					"  (\"I am frustrated by this rush hour traffic\", \"en-US\"),\r\n",
+					"  (\"The cognitive services on spark aint bad\", \"en-US\"),\r\n",
+					"], [\"text\", \"language\"])\r\n",
+					"\r\n",
+					"sentiment = (TextSentiment()\r\n",
+					"            .setSubscriptionKey(cogServicesKey)\r\n",
+					"            .setLocation(serviceLocation)\r\n",
+					"            .setTextCol(\"text\")\r\n",
+					"            .setOutputCol(\"sentiment\")\r\n",
+					"            .setErrorCol(\"error\")\r\n",
+					"            .setLanguageCol(\"language\"))\r\n",
+					"\r\n",
+					"results = sentiment.transform(df)\r\n",
+					"display(results)"
+				],
+				"execution_count": 17
+			}
+		]
+	}
+}

@@ -1,0 +1,143 @@
+{
+	"name": "DeepLearning - Transfer Learning",
+	"properties": {
+		"folder": {
+			"name": "other"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "ab199620-1f0e-4303-84ab-0c5303c1301b"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## DeepLearning - Transfer Learning\n",
+					"\n",
+					"Classify automobile vs airplane using DNN featurization and transfer learning\n",
+					"against a subset of images from CIFAR-10 dataset."
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Load DNN Model and pick one of the inner layers as feature output"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from synapse.ml.cntk import CNTKModel\n",
+					"from synapse.ml.downloader import ModelDownloader\n",
+					"import numpy as np, os, urllib, tarfile, pickle, array\n",
+					"from os.path import abspath\n",
+					"from pyspark.sql.functions import col, udf\n",
+					"from pyspark.sql.types import *\n",
+					"modelName = \"ConvNet\"\n",
+					"modelDir = \"file:\" + abspath(\"models\")\n",
+					"d = ModelDownloader(spark, modelDir)\n",
+					"model = d.downloadByName(modelName)\n",
+					"print(model.layerNames)\n",
+					"cntkModel = CNTKModel().setInputCol(\"images\").setOutputCol(\"features\") \\\n",
+					"                       .setModelLocation(model.uri).setOutputNode(\"l8\")"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Format raw CIFAR data into correct shape."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"imagesWithLabels = spark.read.parquet(\"wasbs://publicwasb@mmlspark.blob.core.windows.net/CIFAR10_test.parquet\")"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Select airplanes (label=0) and automobiles (label=1)"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"imagesWithLabels = imagesWithLabels.filter(\"labels<2\")\n",
+					"imagesWithLabels.cache()"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Featurize images"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"featurizedImages = cntkModel.transform(imagesWithLabels).select([\"features\",\"labels\"])"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Use featurized images to train a classifier"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from synapse.ml.train import TrainClassifier\n",
+					"from pyspark.ml.classification import RandomForestClassifier\n",
+					"\n",
+					"train,test = featurizedImages.randomSplit([0.75,0.25])\n",
+					"\n",
+					"model = TrainClassifier(model=RandomForestClassifier(),labelCol=\"labels\").fit(train)"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Evaluate the accuracy of the model"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from synapse.ml.train import ComputeModelStatistics\n",
+					"predictions = model.transform(test)\n",
+					"metrics = ComputeModelStatistics(evaluationMetric=\"accuracy\").transform(predictions)\n",
+					"metrics.show()"
+				]
+			}
+		]
+	}
+}

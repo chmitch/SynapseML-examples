@@ -1,0 +1,165 @@
+{
+	"name": "DeepLearning - CIFAR10 Convolutional Network",
+	"properties": {
+		"folder": {
+			"name": "other"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "1b2cf04e-198a-4501-9b24-9e4595b61f5d"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## DeepLearning - CIFAR10 Convolutional Network"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from synapse.ml.cntk import CNTKModel\n",
+					"from synapse.ml.downloader import ModelDownloader\n",
+					"from pyspark.sql.functions import udf\n",
+					"from pyspark.sql.types import IntegerType\n",
+					"from os.path import abspath"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Set some paths."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"cdnURL = \"https://mmlspark.azureedge.net/datasets\"\n",
+					"\n",
+					"# Please note that this is a copy of the CIFAR10 dataset originally found here:\n",
+					"# http://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz\n",
+					"imagesWithLabels = spark.read.parquet(\"wasbs://publicwasb@mmlspark.blob.core.windows.net/CIFAR10_test.parquet\")"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"mml-deploy": "hdinsight",
+					"collapsed": true
+				},
+				"source": [
+					"modelName = \"ConvNet\"\n",
+					"modelDir = \"dbfs:///models/\""
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Get the model"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"d = ModelDownloader(spark, modelDir)\n",
+					"model = d.downloadByName(modelName)\n",
+					""
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Evaluate CNTK model."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"import time\n",
+					"start = time.time()\n",
+					"\n",
+					"# Use CNTK model to get log probabilities\n",
+					"cntkModel = CNTKModel().setInputCol(\"images\").setOutputCol(\"output\") \\\n",
+					"                       .setModelLocation(model.uri).setOutputNode(\"z\")\n",
+					"scoredImages = cntkModel.transform(imagesWithLabels)\n",
+					"\n",
+					"# Transform the log probabilities to predictions\n",
+					"def argmax(x): return max(enumerate(x),key=lambda p: p[1])[0]\n",
+					"\n",
+					"argmaxUDF = udf(argmax, IntegerType())\n",
+					"imagePredictions = scoredImages.withColumn(\"predictions\", argmaxUDF(\"output\")) \\\n",
+					"                               .select(\"predictions\", \"labels\")\n",
+					"\n",
+					"numRows = imagePredictions.count()\n",
+					"\n",
+					"end = time.time()\n",
+					"print(\"classifying {} images took {} seconds\".format(numRows,end-start))"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Plot confusion matrix."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"imagePredictions = imagePredictions.toPandas()\n",
+					"y, y_hat = imagePredictions[\"labels\"], imagePredictions[\"predictions\"]"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"import matplotlib.pyplot as plt\n",
+					"import numpy as np\n",
+					"from sklearn.metrics import confusion_matrix\n",
+					"\n",
+					"cm = confusion_matrix(y, y_hat)\n",
+					"\n",
+					"labels = [\"airplane\", \"automobile\", \"bird\", \"cat\", \"deer\", \"dog\", \"frog\",\n",
+					"          \"horse\", \"ship\", \"truck\"]\n",
+					"plt.imshow(cm, interpolation=\"nearest\", cmap=plt.cm.Blues)\n",
+					"plt.colorbar()\n",
+					"tick_marks = np.arange(len(labels))\n",
+					"plt.xticks(tick_marks, labels, rotation=90)\n",
+					"plt.yticks(tick_marks, labels)\n",
+					"plt.xlabel(\"Predicted label\")\n",
+					"plt.ylabel(\"True Label\")\n",
+					"display(plt.show())"
+				]
+			}
+		]
+	}
+}

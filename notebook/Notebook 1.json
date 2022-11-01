@@ -1,0 +1,539 @@
+{
+	"name": "Notebook 1",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "synapsemlpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "c333f1fd-a4bd-4baa-9e4f-752f159919ec"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"b91d35e2-a911-4544-aca1-0b67ea82e819": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "en",
+										"1": "Hello Seattle"
+									},
+									{
+										"0": "en",
+										"1": "There once was a dog who lived in London and thought she was a human"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "language",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "text",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"29dbfb74-e936-4345-a7ff-debd6c96d895": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "en",
+										"1": "Hello Seattle",
+										"3": [
+											{
+												"entityRecognition": [
+													{
+														"result": {
+															"id": "0",
+															"entities": [
+																{
+																	"confidenceScore": 0.96,
+																	"text": "Seattle",
+																	"subcategory": "GPE",
+																	"offset": 6,
+																	"category": "Location",
+																	"length": 7
+																}
+															],
+															"warnings": []
+														}
+													}
+												],
+												"keyPhraseExtraction": [
+													{
+														"result": {
+															"id": "0",
+															"keyPhrases": [
+																"Hello Seattle"
+															],
+															"warnings": []
+														}
+													}
+												]
+											}
+										]
+									},
+									{
+										"0": "en",
+										"1": "There once was a dog who lived in London and thought she was a human",
+										"3": [
+											{
+												"entityRecognition": [
+													{
+														"result": {
+															"id": "0",
+															"entities": [
+																{
+																	"confidenceScore": 1,
+																	"text": "London",
+																	"subcategory": "GPE",
+																	"offset": 34,
+																	"category": "Location",
+																	"length": 6
+																}
+															],
+															"warnings": []
+														}
+													}
+												],
+												"keyPhraseExtraction": [
+													{
+														"result": {
+															"id": "0",
+															"keyPhrases": [
+																"dog",
+																"London",
+																"human"
+															],
+															"warnings": []
+														}
+													}
+												]
+											}
+										]
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "language",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "text",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "error",
+										"type": "StructType(StructField(response,StringType,true), StructField(status,StructType(StructField(protocolVersion,StructType(StructField(protocol,StringType,true), StructField(major,IntegerType,false), StructField(minor,IntegerType,false)),true), StructField(statusCode,IntegerType,false), StructField(reasonPhrase,StringType,true)),true))"
+									},
+									{
+										"key": "3",
+										"name": "textAnalysis",
+										"type": "ArrayType(StructType(StructField(entityRecognition,ArrayType(StructType(StructField(result,StructType(StructField(id,StringType,true), StructField(entities,ArrayType(StructType(StructField(text,StringType,true), StructField(category,StringType,true), StructField(subcategory,StringType,true), StructField(offset,IntegerType,true), StructField(length,IntegerType,true), StructField(confidenceScore,DoubleType,false)),true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true)),true), StructField(error,StructType(StructField(id,StringType,true), StructField(error,StringType,true)),true)),true),true), StructField(entityLinking,ArrayType(StructType(StructField(result,StructType(StructField(id,StringType,true), StructField(entities,ArrayType(StructType(StructField(name,StringType,true), StructField(matches,ArrayType(StructType(StructField(confidenceScore,DoubleType,false), StructField(text,StringType,true), StructField(offset,IntegerType,false), StructField(length,IntegerType,false)),true),true), StructField(language,StringType,true), StructField(id,StringType,true), StructField(url,StringType,true), StructField(dataSource,StringType,true)),true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true)),true), StructField(error,StructType(StructField(id,StringType,true), StructField(error,StringType,true)),true)),true),true), StructField(entityRecognitionPii,ArrayType(StructType(StructField(result,StructType(StructField(id,StringType,true), StructField(entities,ArrayType(StructType(StructField(text,StringType,true), StructField(category,StringType,true), StructField(subcategory,StringType,true), StructField(offset,IntegerType,true), StructField(length,IntegerType,true), StructField(confidenceScore,DoubleType,false)),true),true), StructField(redactedText,StringType,true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true)),true), StructField(error,StructType(StructField(id,StringType,true), StructField(error,StringType,true)),true)),true),true), StructField(keyPhraseExtraction,ArrayType(StructType(StructField(result,StructType(StructField(id,StringType,true), StructField(keyPhrases,ArrayType(StringType,true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true)),true), StructField(error,StructType(StructField(id,StringType,true), StructField(error,StringType,true)),true)),true),true), StructField(sentimentAnalysis,ArrayType(StructType(StructField(result,StructType(StructField(id,StringType,true), StructField(sentiment,StringType,true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true), StructField(confidenceScores,StructType(StructField(positive,DoubleType,false), StructField(neutral,DoubleType,false), StructField(negative,DoubleType,false)),true), StructField(sentences,ArrayType(StructType(StructField(text,StringType,true), StructField(sentiment,StringType,true), StructField(confidenceScores,StructType(StructField(positive,DoubleType,false), StructField(neutral,DoubleType,false), StructField(negative,DoubleType,false)),true), StructField(offset,IntegerType,false), StructField(length,IntegerType,false)),true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true)),true), StructField(error,StructType(StructField(id,StringType,true), StructField(error,StringType,true)),true)),true),true)),true)"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"be709da8-137c-4358-9f77-fc1d00f59697": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "en",
+										"1": "Hello Seattle",
+										"3": [
+											{
+												"result": {
+													"id": "0",
+													"entities": [
+														{
+															"confidenceScore": 0.96,
+															"text": "Seattle",
+															"subcategory": "GPE",
+															"offset": 6,
+															"category": "Location",
+															"length": 7
+														}
+													],
+													"warnings": []
+												}
+											}
+										],
+										"6": [
+											{
+												"result": {
+													"id": "0",
+													"keyPhrases": [
+														"Hello Seattle"
+													],
+													"warnings": []
+												}
+											}
+										]
+									},
+									{
+										"0": "en",
+										"1": "There once was a dog who lived in London and thought she was a human",
+										"3": [
+											{
+												"result": {
+													"id": "0",
+													"entities": [
+														{
+															"confidenceScore": 1,
+															"text": "London",
+															"subcategory": "GPE",
+															"offset": 34,
+															"category": "Location",
+															"length": 6
+														}
+													],
+													"warnings": []
+												}
+											}
+										],
+										"6": [
+											{
+												"result": {
+													"id": "0",
+													"keyPhrases": [
+														"dog",
+														"London",
+														"human"
+													],
+													"warnings": []
+												}
+											}
+										]
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "language",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "text",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "error",
+										"type": "StructType(StructField(response,StringType,true), StructField(status,StructType(StructField(protocolVersion,StructType(StructField(protocol,StringType,true), StructField(major,IntegerType,false), StructField(minor,IntegerType,false)),true), StructField(statusCode,IntegerType,false), StructField(reasonPhrase,StringType,true)),true))"
+									},
+									{
+										"key": "3",
+										"name": "entityRecognition",
+										"type": "ArrayType(StructType(StructField(result,StructType(StructField(id,StringType,true), StructField(entities,ArrayType(StructType(StructField(text,StringType,true), StructField(category,StringType,true), StructField(subcategory,StringType,true), StructField(offset,IntegerType,true), StructField(length,IntegerType,true), StructField(confidenceScore,DoubleType,false)),true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true)),true), StructField(error,StructType(StructField(id,StringType,true), StructField(error,StringType,true)),true)),true)"
+									},
+									{
+										"key": "4",
+										"name": "entityLinking",
+										"type": "ArrayType(StructType(StructField(result,StructType(StructField(id,StringType,true), StructField(entities,ArrayType(StructType(StructField(name,StringType,true), StructField(matches,ArrayType(StructType(StructField(confidenceScore,DoubleType,false), StructField(text,StringType,true), StructField(offset,IntegerType,false), StructField(length,IntegerType,false)),true),true), StructField(language,StringType,true), StructField(id,StringType,true), StructField(url,StringType,true), StructField(dataSource,StringType,true)),true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true)),true), StructField(error,StructType(StructField(id,StringType,true), StructField(error,StringType,true)),true)),true)"
+									},
+									{
+										"key": "5",
+										"name": "entityRecognitionPii",
+										"type": "ArrayType(StructType(StructField(result,StructType(StructField(id,StringType,true), StructField(entities,ArrayType(StructType(StructField(text,StringType,true), StructField(category,StringType,true), StructField(subcategory,StringType,true), StructField(offset,IntegerType,true), StructField(length,IntegerType,true), StructField(confidenceScore,DoubleType,false)),true),true), StructField(redactedText,StringType,true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true)),true), StructField(error,StructType(StructField(id,StringType,true), StructField(error,StringType,true)),true)),true)"
+									},
+									{
+										"key": "6",
+										"name": "keyPhraseExtraction",
+										"type": "ArrayType(StructType(StructField(result,StructType(StructField(id,StringType,true), StructField(keyPhrases,ArrayType(StringType,true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true)),true), StructField(error,StructType(StructField(id,StringType,true), StructField(error,StringType,true)),true)),true)"
+									},
+									{
+										"key": "7",
+										"name": "sentimentAnalysis",
+										"type": "ArrayType(StructType(StructField(result,StructType(StructField(id,StringType,true), StructField(sentiment,StringType,true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true), StructField(confidenceScores,StructType(StructField(positive,DoubleType,false), StructField(neutral,DoubleType,false), StructField(negative,DoubleType,false)),true), StructField(sentences,ArrayType(StructType(StructField(text,StringType,true), StructField(sentiment,StringType,true), StructField(confidenceScores,StructType(StructField(positive,DoubleType,false), StructField(neutral,DoubleType,false), StructField(negative,DoubleType,false)),true), StructField(offset,IntegerType,false), StructField(length,IntegerType,false)),true),true), StructField(warnings,ArrayType(StructType(StructField(code,StringType,true), StructField(message,StringType,true), StructField(targetRef,StringType,true)),true),true)),true), StructField(error,StructType(StructField(id,StringType,true), StructField(error,StringType,true)),true)),true)"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/61691a9f-545c-41c4-baf2-d901d60ef9aa/resourceGroups/cgmsynapsetest/providers/Microsoft.Synapse/workspaces/cgmsynapsetest/bigDataPools/synapsemlpool",
+				"name": "synapsemlpool",
+				"type": "Spark",
+				"endpoint": "https://cgmsynapsetest.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/synapsemlpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.1",
+				"nodeCount": 3,
+				"cores": 8,
+				"memory": 56,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"%%configure -f\r\n",
+					"{\r\n",
+					"  \"name\": \"synapseml\",\r\n",
+					"  \"conf\": {\r\n",
+					"      \"spark.jars.packages\": \"com.microsoft.azure:synapseml_2.12:0.9.5-13-d1b51517-SNAPSHOT\",\r\n",
+					"      \"spark.jars.repositories\": \"https://mmlspark.azureedge.net/maven\",\r\n",
+					"      \"spark.jars.excludes\": \"org.scala-lang:scala-reflect,org.apache.spark:spark-tags_2.12,org.scalactic:scalactic_2.12,org.scalatest:scalatest_2.12\",\r\n",
+					"      \"spark.yarn.user.classpath.first\": \"true\"\r\n",
+					"  }\r\n",
+					"}"
+				],
+				"execution_count": 11
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import os\r\n",
+					"\r\n",
+					"if os.environ.get(\"AZURE_SERVICE\", None) == \"Microsoft.ProjectArcadia\":\r\n",
+					"    from pyspark.sql import SparkSession\r\n",
+					"    spark = SparkSession.builder.getOrCreate()\r\n",
+					"    from notebookutils.mssparkutils.credentials import getSecret\r\n",
+					"    os.environ['TEXT_API_KEY'] = getSecret(\"cgmsynapsevault\", \"cogsvcskey\")\r\n",
+					"\r\n",
+					"#put your service keys here\r\n",
+					"key = os.environ['TEXT_API_KEY']\r\n",
+					"location = 'eastus2'\r\n",
+					""
+				],
+				"execution_count": 12
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df = spark.createDataFrame(data=[\r\n",
+					"        [\"en\", \"Hello Seattle\"],\r\n",
+					"        [\"en\", \"There once was a dog who lived in London and thought she was a human\"]\r\n",
+					"    ], \r\n",
+					"    schema=[\"language\",\"text\"])\r\n",
+					""
+				],
+				"execution_count": 13
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"display(df)"
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from synapse.ml.cognitive import *\r\n",
+					"\r\n",
+					"text_analyze = (TextAnalyze()\r\n",
+					"    .setLocation(location)\r\n",
+					"    .setSubscriptionKey(key)\r\n",
+					"    .setTextCol(\"text\")\r\n",
+					"    .setOutputCol(\"textAnalysis\")\r\n",
+					"    .setErrorCol(\"error\")\r\n",
+					"    .setLanguageCol(\"language\")\r\n",
+					"    # set the tasks to perform\r\n",
+					"    .setEntityRecognitionTasks([{\"parameters\": { \"model-version\": \"latest\"}}])\r\n",
+					"    .setKeyPhraseExtractionTasks([{\"parameters\": { \"model-version\": \"latest\"}}])\r\n",
+					"    # Uncomment these lines to add more tasks\r\n",
+					"    # .setEntityRecognitionPiiTasks([{\"parameters\": { \"model-version\": \"latest\"}}])\r\n",
+					"    # .setEntityLinkingTasks([{\"parameters\": { \"model-version\": \"latest\"}}])\r\n",
+					"    # .setSentimentAnalysisTasks([{\"parameters\": { \"model-version\": \"latest\"}}])\r\n",
+					"    )\r\n",
+					"\r\n",
+					"df_results = text_analyze.transform(df)"
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"display(df_results)"
+				],
+				"execution_count": 16
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"from pyspark.sql.functions import col\r\n",
+					"\r\n",
+					"# reformat and display for easier viewing\r\n",
+					"display(\r\n",
+					"    df_results.select(\"language\", \"text\", \"error\", col(\"textAnalysis\").getItem(0)) # we are not batching so only have a single result\r\n",
+					"        .select(\"language\", \"text\", \"error\", \"textAnalysis[0].*\") # explode the Text Analytics tasks into columns\r\n",
+					")"
+				],
+				"execution_count": 17
+			}
+		]
+	}
+}

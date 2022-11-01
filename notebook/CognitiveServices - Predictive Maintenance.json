@@ -1,0 +1,231 @@
+{
+	"name": "CognitiveServices - Predictive Maintenance",
+	"properties": {
+		"folder": {
+			"name": "cognitive_services"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "13a78b6b-37f5-4f47-9ebb-404d8f7f53f6"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"source": [
+					"# Recipe: Predictive maintenance with the Cognitive Services for Big Data\n",
+					"\n",
+					"This recipe shows how you can use Azure Synapse Analytics and Cognitive Services on Apache Spark for predictive maintenance of IoT devices. We'll follow along with the [CosmosDB and Synapse Link](https://github.com/Azure-Samples/cosmosdb-synapse-link-samples) sample. To keep things simple, in this recipe we'll read the data straight from a CSV file rather than getting streamed data through CosmosDB and Synapse Link. We strongly encourage you to look over the Synapse Link sample.\n",
+					"\n",
+					"## Hypothetical scenario\n",
+					"\n",
+					"The hypothetical scenario is a Power Plant, where IoT devices are monitoring [steam turbines](https://en.wikipedia.org/wiki/Steam_turbine). The IoTSignals collection has Revolutions per minute (RPM) and Megawatts (MW) data for each turbine. Signals from steam turbines are being analyzed and anomalous signals are detected.\n",
+					"\n",
+					"There could be outliers in the data in random frequency. In those situations, RPM values will go up and MW output will go down, for circuit protection. The idea is to see the data varying at the same time, but with different signals.\n",
+					"\n",
+					"## Prerequisites\n",
+					"\n",
+					"* An Azure subscription - [Create one for free](https://azure.microsoft.com/en-us/free/)\n",
+					"* [Azure Synapse workspace](https://docs.microsoft.com/en-us/azure/synapse-analytics/get-started-create-workspace) configured with a [serverless Apache Spark pool](https://docs.microsoft.com/en-us/azure/synapse-analytics/get-started-analyze-spark)\n",
+					"\n",
+					"## Setup\n",
+					"\n",
+					"### Create an Anomaly Detector resource\n",
+					"\n",
+					"Azure Cognitive Services are represented by Azure resources that you subscribe to. Create a resource for Translator using the [Azure portal](https://docs.microsoft.com/en-us/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Clinux) or [Azure CLI](https://docs.microsoft.com/en-us/azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=linux). You can also:\n",
+					"\n",
+					"- View an existing resource in the  [Azure portal](https://portal.azure.com/).\n",
+					"\n",
+					"Make note of the endpoint and the key for this resource, you'll need it in this guide."
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Enter your service keys\n",
+					"\n",
+					"Let's start by adding your key and location."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"import os\n",
+					"\n",
+					"service_key =  os.environ[\"ANOMALY_API_KEY\"] # Paste your anomaly detector key here\n",
+					"location = \"westus2\" # Paste your anomaly detector location here\n",
+					"\n",
+					"assert (service_key is not None)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Read data into a DataFrame\n",
+					"\n",
+					"Next, let's read the IoTSignals file into a DataFrame. Open a new notebook in your Synapse workspace and create a DataFrame from the file."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"df_signals = spark.read.csv(\"wasbs://publicwasb@mmlspark.blob.core.windows.net/iot/IoTSignals.csv\", header=True, inferSchema=True)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"### Run anomaly detection using Cognitive Services on Spark\n",
+					"\n",
+					"The goal is to find instances where the signals from the IoT devices were outputting anomalous values so that we can see when something is going wrong and do predictive maintenance. To do that, let's use Anomaly Detector on Spark:"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from pyspark.sql.functions import col, struct\n",
+					"from synapse.ml.cognitive import SimpleDetectAnomalies\n",
+					"from synapse.ml.core.spark import FluentAPI\n",
+					"\n",
+					"detector = (SimpleDetectAnomalies()\n",
+					"    .setSubscriptionKey(service_key)\n",
+					"    .setLocation(location)\n",
+					"    .setOutputCol(\"anomalies\")\n",
+					"    .setGroupbyCol(\"grouping\")\n",
+					"    .setSensitivity(95)\n",
+					"    .setGranularity(\"secondly\"))\n",
+					"\n",
+					"df_anomaly = (df_signals\n",
+					"    .where(col(\"unitSymbol\") == 'RPM')\n",
+					"    .withColumn(\"timestamp\", col(\"dateTime\").cast(\"string\"))\n",
+					"    .withColumn(\"value\", col(\"measureValue\").cast(\"double\"))\n",
+					"    .withColumn(\"grouping\", struct(\"deviceId\"))\n",
+					"    .mlTransform(detector)).cache()\n",
+					"\n",
+					"df_anomaly.createOrReplaceTempView('df_anomaly')"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Let's take a look at the data:"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"df_anomaly.select(\"timestamp\",\"value\",\"deviceId\",\"anomalies.isAnomaly\").show(3)\n",
+					""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"This cell should yield a result that looks like:\n",
+					"\n",
+					"| timestamp           |   value | deviceId   | isAnomaly   |\n",
+					"|:--------------------|--------:|:-----------|:------------|\n",
+					"| 2020-05-01 18:33:51 |    3174 | dev-7      | False       |\n",
+					"| 2020-05-01 18:33:52 |    2976 | dev-7      | False       |\n",
+					"| 2020-05-01 18:33:53 |    2714 | dev-7      | False       |"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Visualize anomalies for one of the devices\n",
+					"\n",
+					"IoTSignals.csv has signals from multiple IoT devices. We'll focus on a specific device and visualize anomalous outputs from the device."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"df_anomaly_single_device = spark.sql(\"\"\"\n",
+					"select\n",
+					"  timestamp,\n",
+					"  measureValue,\n",
+					"  anomalies.expectedValue,\n",
+					"  anomalies.expectedValue + anomalies.upperMargin as expectedUpperValue,\n",
+					"  anomalies.expectedValue - anomalies.lowerMargin as expectedLowerValue,\n",
+					"  case when anomalies.isAnomaly=true then 1 else 0 end as isAnomaly\n",
+					"from\n",
+					"  df_anomaly\n",
+					"where deviceid = 'dev-1' and timestamp < '2020-04-29'\n",
+					"order by timestamp\n",
+					"limit 200\"\"\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Now that we have created a dataframe that represents the anomalies for a particular device, we can visualize these anomalies:"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"import matplotlib.pyplot as plt\n",
+					"from pyspark.sql.functions import col\n",
+					"\n",
+					"adf = df_anomaly_single_device.toPandas()\n",
+					"adf_subset = df_anomaly_single_device.where(col(\"isAnomaly\") == 1).toPandas()\n",
+					"\n",
+					"plt.figure(figsize=(23,8))\n",
+					"plt.plot(adf['timestamp'],adf['expectedUpperValue'], color='darkred', linestyle='solid', linewidth=0.25, label='UpperMargin')\n",
+					"plt.plot(adf['timestamp'],adf['expectedValue'], color='darkgreen', linestyle='solid', linewidth=2, label='Expected Value')\n",
+					"plt.plot(adf['timestamp'],adf['measureValue'], 'b', color='royalblue', linestyle='dotted', linewidth=2, label='Actual')\n",
+					"plt.plot(adf['timestamp'],adf['expectedLowerValue'],  color='black', linestyle='solid', linewidth=0.25, label='Lower Margin')\n",
+					"plt.plot(adf_subset['timestamp'],adf_subset['measureValue'], 'ro', label = 'Anomaly')\n",
+					"plt.legend()\n",
+					"plt.title('RPM Anomalies with Confidence Intervals')\n",
+					"plt.show()"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"If successful, your output will look like this:\n",
+					"\n",
+					"![Anomaly Detector Plot](https://github.com/MicrosoftDocs/azure-docs/raw/master/articles/cognitive-services/big-data/media/anomaly-output.png)\n",
+					"\n",
+					"## Next steps\n",
+					"\n",
+					"Learn how to do predictive maintenance at scale with Azure Cognitive Services, Azure Synapse Analytics, and Azure CosmosDB. For more information, see the full sample on [GitHub](https://github.com/Azure-Samples/cosmosdb-synapse-link-samples)."
+				]
+			}
+		]
+	}
+}

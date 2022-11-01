@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 3",
+	"properties": {
+		"content": {
+			"query": "MERGE \n    dimCustomer AS TARGET\nUSING\n(\n    SELECT\n        CustomerAlternateKey,\n        GeographyKey,\n        FirstName,\n        MiddleName,\n        LastName\n    FROM dimCustomer2\n) AS SOURCE\nON TARGET.CustomerKey = SOURCE.CustomerKey\n\nWHEN NOT MATCHED BY TARGET THEN\nINSERT\n(\n    CustomerAlternateKey,\n    GeographyKey,\n    FirstName,\n    MiddleName,\n    LastName\n)\nVALUES \n(\n    SOURCE.CustomerAlternateKey,\n    SOURCE.GeographyKey,\n    SOURCE.FirstName,\n    SOURCE.MiddleName,\n    SOURCE.LastName\n)\n\nWHEN MATCHED THEN\nUPDATE SET\n    TARGET.CustomerAlternateKey = SOURCE.CustomerAlternateKey,\n    TARGET.GeographyKey = SOURCE.GeographyKey,\n    TARGET.FirstName = SOURCE.FirstName,\n    TARGET.MiddleName = SOURCE.MiddleName,\n    TARGET.LastName = SOURCE.LastName\n\nOUTPUT $action, inserted.*, deleted.*",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

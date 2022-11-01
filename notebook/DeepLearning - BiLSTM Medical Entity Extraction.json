@@ -1,0 +1,401 @@
+{
+	"name": "DeepLearning - BiLSTM Medical Entity Extraction",
+	"properties": {
+		"folder": {
+			"name": "other"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "synapsemlpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "fd26182a-dc91-4bd4-89d4-3378e3986d21"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/61691a9f-545c-41c4-baf2-d901d60ef9aa/resourceGroups/cgmsynapsetest/providers/Microsoft.Synapse/workspaces/cgmsynapsetest/bigDataPools/synapsemlpool",
+				"name": "synapsemlpool",
+				"type": "Spark",
+				"endpoint": "https://cgmsynapsetest.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/synapsemlpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.1",
+				"nodeCount": 3,
+				"cores": 8,
+				"memory": 56,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## DeepLearning - BiLSTM Medical Entity Extraction\n",
+					"\n",
+					"In this tutorial we use a Bidirectional LSTM entity extractor from the synapseml\n",
+					"model downloader to extract entities from PubMed medical abstracts\n",
+					"\n",
+					"Our goal is to identify useful entities in a block of free-form text.  This is a\n",
+					"nontrivial task because entities might be referenced in the text using variety of\n",
+					"synonymns, abbreviations, or formats. Our target output for this model is a set\n",
+					"of tags that specify what kind of entity is referenced. The model we use was\n",
+					"trained on a large dataset of publically tagged pubmed abstracts. An example\n",
+					"annotated sequence is given below, \"O\" represents no tag:\n",
+					"\n",
+					"|I-Chemical | O   |I-Chemical  | O   | O   |I-Chemical | O   |I-Chemical  | O   | O      | O   | O   |I-Disease |I-Disease| O   | O    |\n",
+					"|:---:      |:---:|:---:       |:---:|:---:|:---:      |:---:|:---:       |:---:|:---:   |:---:|:---:|:---:     |:---:    |:---:|:---: |\n",
+					"|Baricitinib| ,   |Methotrexate| ,   | or  |Baricitinib|Plus |Methotrexate| in  |Patients|with |Early|Rheumatoid|Arthritis| Who |Had...|\n",
+					"\n",
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"%%configure -f\r\n",
+					"{\r\n",
+					"  \"name\": \"synapseml\",\r\n",
+					"  \"conf\": {\r\n",
+					"      \"spark.jars.packages\": \"com.microsoft.azure:synapseml_2.12:0.9.5-13-d1b51517-SNAPSHOT\",\r\n",
+					"      \"spark.jars.repositories\": \"https://mmlspark.azureedge.net/maven\",\r\n",
+					"      \"spark.jars.excludes\": \"org.scala-lang:scala-reflect,org.apache.spark:spark-tags_2.12,org.scalactic:scalactic_2.12,org.scalatest:scalatest_2.12\",\r\n",
+					"      \"spark.yarn.user.classpath.first\": \"true\"\r\n",
+					"  }\r\n",
+					"}"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from synapse.ml.cntk import CNTKModel\n",
+					"from synapse.ml.downloader import ModelDownloader\n",
+					"from pyspark.sql.functions import udf, col\n",
+					"from pyspark.sql.types import IntegerType, ArrayType, FloatType, StringType\n",
+					"from pyspark.sql import Row\n",
+					"\n",
+					"from os.path import abspath, join\n",
+					"import numpy as np\n",
+					"from nltk.tokenize import sent_tokenize, word_tokenize\n",
+					"import os, tarfile, pickle\n",
+					"import urllib.request\n",
+					"import nltk"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Get the model and extract the data."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"mml-deploy": "hdinsight",
+					"collapsed": true
+				},
+				"source": [
+					"import os\n",
+					"import sys\n",
+					"import nltk\n",
+					"from pyspark import SparkFiles\n",
+					"\n",
+					"#Specify the name of the storage account that is associated with Synapse\n",
+					"storageAccountName = \"cgmsynapsetest\"\n",
+					"#Specify the container you created in Storage account, you could also initialize a new name here, and Synapse will help you create that container automatically.\n",
+					"containerName = \"default\"\n",
+					"\n",
+					"filePath = \"abfss://\" + containerName + \"@\" + storageAccountName + \".dfs.core.windows.net/checkpoint_path/\"\n",
+					"\n",
+					"modelName = \"BiLSTM\"\n",
+					"modelDir = \"models\"\n",
+					"if not os.path.exists(modelDir): os.makedirs(modelDir)\n",
+					"\n",
+					"filePath = \"abfss://\" + containerName + \"@\" + storageAccountName + \".dfs.core.windows.net/\" + modelDir + \"/\"\n",
+					"d = ModelDownloader(spark, filePath)\n",
+					"modelSchema = d.downloadByName(modelName)\n",
+					"\n",
+					"filePath = filePath + \"nltkdata\"\n",
+					"\n",
+					"#add stopwords from storage\n",
+					"sc.addFile(\"abfss://\" + containerName + \"@\" + storageAccountName + \".dfs.core.windows.net/synapse/workspaces/cgmsynapsetest/nltk_data/\",True)\n",
+					"#append path to NLTK\n",
+					"nltk.data.path.append(SparkFiles.getRootDirectory() + '/nltk_data')\n",
+					"\n",
+					""
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"mml-deploy": "local",
+					"collapsed": false
+				},
+				"source": [
+					"modelName = \"BiLSTM\"\n",
+					"modelDir = abspath(\"models\")\n",
+					"if not os.path.exists(modelDir): os.makedirs(modelDir)\n",
+					"d = ModelDownloader(spark, \"file://\" + modelDir)\n",
+					"modelSchema = d.downloadByName(modelName)\n",
+					"nltk.download(\"punkt\")"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Download the embeddings\n",
+					"\n",
+					"We use the nltk punkt sentence and word tokenizers and a set of embeddings trained on PubMed Articles"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"wordEmbFileName = \"WordEmbeddings_PubMed.pkl\"\n",
+					"pickleFile = join(abspath(\"models\"), wordEmbFileName)\n",
+					"if not os.path.isfile(pickleFile):\n",
+					"    urllib.request.urlretrieve(\"https://mmlspark.blob.core.windows.net/datasets/\" + wordEmbFileName, pickleFile)"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Load the embeddings and create functions for encoding sentences"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"pickleContent = pickle.load(open(pickleFile, \"rb\"), encoding=\"latin-1\")\n",
+					"wordToIndex = pickleContent[\"word_to_index\"]\n",
+					"wordvectors = pickleContent[\"wordvectors\"]\n",
+					"classToEntity = pickleContent[\"class_to_entity\"]\n",
+					"\n",
+					"nClasses = len(classToEntity)\n",
+					"nFeatures = wordvectors.shape[1]\n",
+					"maxSentenceLen = 613"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"content = \"Baricitinib, Methotrexate, or Baricitinib Plus Methotrexate in Patients with Early Rheumatoid\\\n",
+					" Arthritis Who Had Received Limited or No Treatment with Disease-Modifying-Anti-Rheumatic-Drugs (DMARDs):\\\n",
+					" Phase 3 Trial Results. Keywords: Janus kinase (JAK), methotrexate (MTX) and rheumatoid arthritis (RA) and\\\n",
+					" Clinical research. In 2 completed phase 3 studies, baricitinib (bari) improved disease activity with a\\\n",
+					" satisfactory safety profile in patients (pts) with moderately-to-severely active RA who were inadequate\\\n",
+					" responders to either conventional synthetic1 or biologic2DMARDs. This abstract reports results from a\\\n",
+					" phase 3 study of bari administered as monotherapy or in combination with methotrexate (MTX) to pts with\\\n",
+					" early active RA who had limited or no prior treatment with DMARDs. MTX monotherapy was the active comparator.\""
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"sentences = sent_tokenize(content)\n",
+					"df = spark.createDataFrame(enumerate(sentences), [\"index\",\"sentence\"])"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"mml-deploy": "hdinsight",
+					"collapsed": true
+				},
+				"source": [
+					"# Add the tokenizers to all worker nodes\n",
+					"def prepNLTK(partition):\n",
+					"    nltk.data.path.append(\"/dbfs/nltkdata\")\n",
+					"    return partition\n",
+					"\n",
+					"df = df.rdd.mapPartitions(prepNLTK).toDF()"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"pycharm": {
+						"name": "#%%\n"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"def safe_tokenize(sent):\n",
+					"    try:\n",
+					"        return word_tokenize(sent)\n",
+					"    except LookupError:\n",
+					"        prepNLTK(None)\n",
+					"        return word_tokenize(sent)\n",
+					"\n",
+					"tokenizeUDF = udf(safe_tokenize, ArrayType(StringType()))\n",
+					"df = df.withColumn(\"tokens\",tokenizeUDF(\"sentence\"))\n",
+					"\n",
+					"countUDF = udf(len, IntegerType())\n",
+					"df = df.withColumn(\"count\",countUDF(\"tokens\"))\n",
+					"\n",
+					"def wordToEmb(word):\n",
+					"    return wordvectors[wordToIndex.get(word.lower(), wordToIndex[\"UNK\"])]\n",
+					"\n",
+					"def featurize(tokens):\n",
+					"    X = np.zeros((maxSentenceLen, nFeatures))\n",
+					"    X[-len(tokens):,:] = np.array([wordToEmb(word) for word in tokens])\n",
+					"    return [float(x) for x in X.reshape(maxSentenceLen, nFeatures).flatten()]\n",
+					"\n",
+					"def safe_show(df, retries):\n",
+					"    try:\n",
+					"        df.show()\n",
+					"    except Exception as e:\n",
+					"        if retries >= 1:\n",
+					"            safe_show(df, retries-1)\n",
+					"        else:\n",
+					"            raise e\n",
+					"\n",
+					"featurizeUDF = udf(featurize,  ArrayType(FloatType()))\n",
+					"\n",
+					"df = df.withColumn(\"features\", featurizeUDF(\"tokens\")).cache()\n",
+					"safe_show(df, 5) # Can be flaky on build server\n",
+					"    \n",
+					""
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Run the CNTKModel"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"model = CNTKModel() \\\n",
+					"    .setModelLocation(modelSchema.uri) \\\n",
+					"    .setInputCol(\"features\") \\\n",
+					"    .setOutputCol(\"probs\") \\\n",
+					"    .setOutputNodeIndex(0) \\\n",
+					"    .setMiniBatchSize(1)\n",
+					"\n",
+					"df = model.transform(df).cache()\n",
+					"df.show()"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"def probsToEntities(probs, wordCount):\n",
+					"    reshaped_probs = np.array(probs).reshape(maxSentenceLen, nClasses)\n",
+					"    reshaped_probs = reshaped_probs[-wordCount:,:]\n",
+					"    return [classToEntity[np.argmax(probs)] for probs in reshaped_probs]\n",
+					"\n",
+					"toEntityUDF = udf(probsToEntities,ArrayType(StringType()))\n",
+					"df = df.withColumn(\"entities\", toEntityUDF(\"probs\", \"count\"))\n",
+					"df.show()"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Show the annotated text"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# Color Code the Text based on the entity type\n",
+					"colors = {\n",
+					"    \"B-Disease\": \"blue\",\n",
+					"    \"I-Disease\":\"blue\",\n",
+					"    \"B-Drug\":\"lime\",\n",
+					"    \"I-Drug\":\"lime\",\n",
+					"    \"B-Chemical\":\"lime\",\n",
+					"    \"I-Chemical\":\"lime\",\n",
+					"    \"O\":\"black\",\n",
+					"    \"NONE\":\"black\"\n",
+					"}\n",
+					"\n",
+					"def prettyPrint(words, annotations):\n",
+					"    formattedWords = []\n",
+					"    for word,annotation in zip(words,annotations):\n",
+					"        formattedWord = \"<font size = '2' color = '{}'>{}</font>\".format(colors[annotation], word)\n",
+					"        if annotation in {\"O\",\"NONE\"}:\n",
+					"            formattedWords.append(formattedWord)\n",
+					"        else:\n",
+					"            formattedWords.append(\"<b>{}</b>\".format(formattedWord))\n",
+					"    return \" \".join(formattedWords)\n",
+					"\n",
+					"prettyPrintUDF = udf(prettyPrint, StringType())\n",
+					"df = df.withColumn(\"formattedSentence\", prettyPrintUDF(\"tokens\", \"entities\")) \\\n",
+					"       .select(\"formattedSentence\")\n",
+					"\n",
+					"sentences = [row[\"formattedSentence\"] for row in df.collect()]"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"from IPython.core.display import display, HTML\n",
+					"for sentence in sentences:\n",
+					"    display(HTML(sentence))"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Example text used in this demo has been taken from:\n",
+					"\n",
+					"Fleischmann R, Takeuchi T, Schlichting DE, Macias WL, Rooney T, Gurbuz S, Stoykov I,\n",
+					"Beattie SD, Kuo WL, Schiff M. Baricitinib, Methotrexate, or Baricitinib Plus Methotrexate\n",
+					"in Patients with Early Rheumatoid Arthritis Who Had Received Limited or No Treatment with\n",
+					"Disease-Modifying Anti-Rheumatic Drugs (DMARDs): Phase 3 Trial Results [abstract].\n",
+					"Arthritis Rheumatol. 2015; 67 (suppl 10).\n",
+					"http://acrabstracts.org/abstract/baricitinib-methotrexate-or-baricitinib-plus-methotrexate-in-patients-with-early-rheumatoid-arthritis-who-had-received-limited-or-no-treatment-with-disease-modifying-anti-rheumatic-drugs-dmards-p/.\n",
+					"Accessed August 18, 2017."
+				]
+			}
+		]
+	}
+}

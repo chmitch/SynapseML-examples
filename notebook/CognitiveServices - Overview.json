@@ -1,0 +1,2090 @@
+{
+	"name": "CognitiveServices - Overview",
+	"properties": {
+		"folder": {
+			"name": "cognitive_services"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "synapsemlpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "9c7588e1-ceb5-427a-9287-d54dc1186e2a"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"22821630-e510-4eb8-9c7f-70ac1bf70ec5": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "I am so happy today, its sunny!",
+										"1": "positive"
+									},
+									{
+										"0": "I am frustrated by this rush hour traffic",
+										"1": "negative"
+									},
+									{
+										"0": "The cognitive services on spark aint bad",
+										"1": "negative"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "text",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "sentiment",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"af375735-a273-48b2-b803-1e2344f654d6": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "20mg of ibuprofen twice a day",
+										"1": {
+											"result": {
+												"id": "0",
+												"warnings": [],
+												"entities": [
+													{
+														"confidenceScore": 0.99,
+														"text": "20mg",
+														"offset": 0,
+														"dataSources": [],
+														"category": "Dosage",
+														"length": 4
+													},
+													{
+														"normalizedText": "ibuprofen",
+														"confidenceScore": 1,
+														"text": "ibuprofen",
+														"offset": 8,
+														"dataSources": [
+															{
+																"name": "UMLS",
+																"entityId": "C0020740"
+															},
+															{
+																"name": "AOD",
+																"entityId": "0000019879"
+															},
+															{
+																"name": "ATC",
+																"entityId": "M01AE01"
+															},
+															{
+																"name": "CCPSS",
+																"entityId": "0046165"
+															},
+															{
+																"name": "CHV",
+																"entityId": "0000006519"
+															},
+															{
+																"name": "CSP",
+																"entityId": "2270-2077"
+															},
+															{
+																"name": "DRUGBANK",
+																"entityId": "DB01050"
+															},
+															{
+																"name": "GS",
+																"entityId": "1611"
+															},
+															{
+																"name": "LCH_NW",
+																"entityId": "sh97005926"
+															},
+															{
+																"name": "LNC",
+																"entityId": "LP16165-0"
+															},
+															{
+																"name": "MEDCIN",
+																"entityId": "40458"
+															},
+															{
+																"name": "MMSL",
+																"entityId": "d00015"
+															},
+															{
+																"name": "MSH",
+																"entityId": "D007052"
+															},
+															{
+																"name": "MTHSPL",
+																"entityId": "WK2XYI10QM"
+															},
+															{
+																"name": "NCI",
+																"entityId": "C561"
+															},
+															{
+																"name": "NCI_CTRP",
+																"entityId": "C561"
+															},
+															{
+																"name": "NCI_DCP",
+																"entityId": "00803"
+															},
+															{
+																"name": "NCI_DTP",
+																"entityId": "NSC0256857"
+															},
+															{
+																"name": "NCI_FDA",
+																"entityId": "WK2XYI10QM"
+															},
+															{
+																"name": "NCI_NCI-GLOSS",
+																"entityId": "CDR0000613511"
+															},
+															{
+																"name": "NDDF",
+																"entityId": "002377"
+															},
+															{
+																"name": "PDQ",
+																"entityId": "CDR0000040475"
+															},
+															{
+																"name": "RCD",
+																"entityId": "x02MO"
+															},
+															{
+																"name": "RXNORM",
+																"entityId": "5640"
+															},
+															{
+																"name": "SNM",
+																"entityId": "E-7772"
+															},
+															{
+																"name": "SNMI",
+																"entityId": "C-603C0"
+															},
+															{
+																"name": "SNOMEDCT_US",
+																"entityId": "387207008"
+															},
+															{
+																"name": "USP",
+																"entityId": "m39860"
+															},
+															{
+																"name": "USPMG",
+																"entityId": "MTHU000060"
+															},
+															{
+																"name": "VANDF",
+																"entityId": "4017840"
+															}
+														],
+														"category": "MedicationName",
+														"length": 9
+													},
+													{
+														"confidenceScore": 1,
+														"text": "twice a day",
+														"offset": 18,
+														"dataSources": [],
+														"category": "Frequency",
+														"length": 11
+													}
+												],
+												"entityRelation": [
+													{
+														"relationType": "DosageOfMedication",
+														"roles": [
+															{
+																"entity": {
+																	"confidenceScore": 0.99,
+																	"text": "20mg",
+																	"offset": 0,
+																	"dataSources": [],
+																	"category": "Dosage",
+																	"length": 4
+																},
+																"name": "Dosage"
+															},
+															{
+																"entity": {
+																	"normalizedText": "ibuprofen",
+																	"confidenceScore": 1,
+																	"text": "ibuprofen",
+																	"offset": 8,
+																	"dataSources": [
+																		{
+																			"name": "UMLS",
+																			"entityId": "C0020740"
+																		},
+																		{
+																			"name": "AOD",
+																			"entityId": "0000019879"
+																		},
+																		{
+																			"name": "ATC",
+																			"entityId": "M01AE01"
+																		},
+																		{
+																			"name": "CCPSS",
+																			"entityId": "0046165"
+																		},
+																		{
+																			"name": "CHV",
+																			"entityId": "0000006519"
+																		},
+																		{
+																			"name": "CSP",
+																			"entityId": "2270-2077"
+																		},
+																		{
+																			"name": "DRUGBANK",
+																			"entityId": "DB01050"
+																		},
+																		{
+																			"name": "GS",
+																			"entityId": "1611"
+																		},
+																		{
+																			"name": "LCH_NW",
+																			"entityId": "sh97005926"
+																		},
+																		{
+																			"name": "LNC",
+																			"entityId": "LP16165-0"
+																		},
+																		{
+																			"name": "MEDCIN",
+																			"entityId": "40458"
+																		},
+																		{
+																			"name": "MMSL",
+																			"entityId": "d00015"
+																		},
+																		{
+																			"name": "MSH",
+																			"entityId": "D007052"
+																		},
+																		{
+																			"name": "MTHSPL",
+																			"entityId": "WK2XYI10QM"
+																		},
+																		{
+																			"name": "NCI",
+																			"entityId": "C561"
+																		},
+																		{
+																			"name": "NCI_CTRP",
+																			"entityId": "C561"
+																		},
+																		{
+																			"name": "NCI_DCP",
+																			"entityId": "00803"
+																		},
+																		{
+																			"name": "NCI_DTP",
+																			"entityId": "NSC0256857"
+																		},
+																		{
+																			"name": "NCI_FDA",
+																			"entityId": "WK2XYI10QM"
+																		},
+																		{
+																			"name": "NCI_NCI-GLOSS",
+																			"entityId": "CDR0000613511"
+																		},
+																		{
+																			"name": "NDDF",
+																			"entityId": "002377"
+																		},
+																		{
+																			"name": "PDQ",
+																			"entityId": "CDR0000040475"
+																		},
+																		{
+																			"name": "RCD",
+																			"entityId": "x02MO"
+																		},
+																		{
+																			"name": "RXNORM",
+																			"entityId": "5640"
+																		},
+																		{
+																			"name": "SNM",
+																			"entityId": "E-7772"
+																		},
+																		{
+																			"name": "SNMI",
+																			"entityId": "C-603C0"
+																		},
+																		{
+																			"name": "SNOMEDCT_US",
+																			"entityId": "387207008"
+																		},
+																		{
+																			"name": "USP",
+																			"entityId": "m39860"
+																		},
+																		{
+																			"name": "USPMG",
+																			"entityId": "MTHU000060"
+																		},
+																		{
+																			"name": "VANDF",
+																			"entityId": "4017840"
+																		}
+																	],
+																	"category": "MedicationName",
+																	"length": 9
+																},
+																"name": "Medication"
+															}
+														]
+													},
+													{
+														"relationType": "FrequencyOfMedication",
+														"roles": [
+															{
+																"entity": {
+																	"normalizedText": "ibuprofen",
+																	"confidenceScore": 1,
+																	"text": "ibuprofen",
+																	"offset": 8,
+																	"dataSources": [
+																		{
+																			"name": "UMLS",
+																			"entityId": "C0020740"
+																		},
+																		{
+																			"name": "AOD",
+																			"entityId": "0000019879"
+																		},
+																		{
+																			"name": "ATC",
+																			"entityId": "M01AE01"
+																		},
+																		{
+																			"name": "CCPSS",
+																			"entityId": "0046165"
+																		},
+																		{
+																			"name": "CHV",
+																			"entityId": "0000006519"
+																		},
+																		{
+																			"name": "CSP",
+																			"entityId": "2270-2077"
+																		},
+																		{
+																			"name": "DRUGBANK",
+																			"entityId": "DB01050"
+																		},
+																		{
+																			"name": "GS",
+																			"entityId": "1611"
+																		},
+																		{
+																			"name": "LCH_NW",
+																			"entityId": "sh97005926"
+																		},
+																		{
+																			"name": "LNC",
+																			"entityId": "LP16165-0"
+																		},
+																		{
+																			"name": "MEDCIN",
+																			"entityId": "40458"
+																		},
+																		{
+																			"name": "MMSL",
+																			"entityId": "d00015"
+																		},
+																		{
+																			"name": "MSH",
+																			"entityId": "D007052"
+																		},
+																		{
+																			"name": "MTHSPL",
+																			"entityId": "WK2XYI10QM"
+																		},
+																		{
+																			"name": "NCI",
+																			"entityId": "C561"
+																		},
+																		{
+																			"name": "NCI_CTRP",
+																			"entityId": "C561"
+																		},
+																		{
+																			"name": "NCI_DCP",
+																			"entityId": "00803"
+																		},
+																		{
+																			"name": "NCI_DTP",
+																			"entityId": "NSC0256857"
+																		},
+																		{
+																			"name": "NCI_FDA",
+																			"entityId": "WK2XYI10QM"
+																		},
+																		{
+																			"name": "NCI_NCI-GLOSS",
+																			"entityId": "CDR0000613511"
+																		},
+																		{
+																			"name": "NDDF",
+																			"entityId": "002377"
+																		},
+																		{
+																			"name": "PDQ",
+																			"entityId": "CDR0000040475"
+																		},
+																		{
+																			"name": "RCD",
+																			"entityId": "x02MO"
+																		},
+																		{
+																			"name": "RXNORM",
+																			"entityId": "5640"
+																		},
+																		{
+																			"name": "SNM",
+																			"entityId": "E-7772"
+																		},
+																		{
+																			"name": "SNMI",
+																			"entityId": "C-603C0"
+																		},
+																		{
+																			"name": "SNOMEDCT_US",
+																			"entityId": "387207008"
+																		},
+																		{
+																			"name": "USP",
+																			"entityId": "m39860"
+																		},
+																		{
+																			"name": "USPMG",
+																			"entityId": "MTHU000060"
+																		},
+																		{
+																			"name": "VANDF",
+																			"entityId": "4017840"
+																		}
+																	],
+																	"category": "MedicationName",
+																	"length": 9
+																},
+																"name": "Medication"
+															},
+															{
+																"entity": {
+																	"confidenceScore": 1,
+																	"text": "twice a day",
+																	"offset": 18,
+																	"dataSources": [],
+																	"category": "Frequency",
+																	"length": 11
+																},
+																"name": "Frequency"
+															}
+														]
+													}
+												]
+											}
+										}
+									},
+									{
+										"0": "1tsp of Tylenol every 4 hours",
+										"1": {
+											"result": {
+												"id": "0",
+												"warnings": [],
+												"entities": [
+													{
+														"confidenceScore": 1,
+														"text": "1tsp",
+														"offset": 0,
+														"dataSources": [],
+														"category": "Dosage",
+														"length": 4
+													},
+													{
+														"normalizedText": "Tylenol",
+														"confidenceScore": 1,
+														"text": "Tylenol",
+														"offset": 8,
+														"dataSources": [
+															{
+																"name": "UMLS",
+																"entityId": "C0699142"
+															},
+															{
+																"name": "AOD",
+																"entityId": "0000028876"
+															},
+															{
+																"name": "CHV",
+																"entityId": "0000044376"
+															},
+															{
+																"name": "MMSL",
+																"entityId": "6732"
+															},
+															{
+																"name": "MSH",
+																"entityId": "D000082"
+															},
+															{
+																"name": "NCI",
+																"entityId": "C198"
+															},
+															{
+																"name": "NCI_DTP",
+																"entityId": "NSC0003991"
+															},
+															{
+																"name": "PDQ",
+																"entityId": "CDR0000039129"
+															},
+															{
+																"name": "RXNORM",
+																"entityId": "202433"
+															}
+														],
+														"category": "MedicationName",
+														"length": 7
+													},
+													{
+														"confidenceScore": 1,
+														"text": "every 4 hours",
+														"offset": 16,
+														"dataSources": [],
+														"category": "Frequency",
+														"length": 13
+													}
+												],
+												"entityRelation": [
+													{
+														"relationType": "DosageOfMedication",
+														"roles": [
+															{
+																"entity": {
+																	"confidenceScore": 1,
+																	"text": "1tsp",
+																	"offset": 0,
+																	"dataSources": [],
+																	"category": "Dosage",
+																	"length": 4
+																},
+																"name": "Dosage"
+															},
+															{
+																"entity": {
+																	"normalizedText": "Tylenol",
+																	"confidenceScore": 1,
+																	"text": "Tylenol",
+																	"offset": 8,
+																	"dataSources": [
+																		{
+																			"name": "UMLS",
+																			"entityId": "C0699142"
+																		},
+																		{
+																			"name": "AOD",
+																			"entityId": "0000028876"
+																		},
+																		{
+																			"name": "CHV",
+																			"entityId": "0000044376"
+																		},
+																		{
+																			"name": "MMSL",
+																			"entityId": "6732"
+																		},
+																		{
+																			"name": "MSH",
+																			"entityId": "D000082"
+																		},
+																		{
+																			"name": "NCI",
+																			"entityId": "C198"
+																		},
+																		{
+																			"name": "NCI_DTP",
+																			"entityId": "NSC0003991"
+																		},
+																		{
+																			"name": "PDQ",
+																			"entityId": "CDR0000039129"
+																		},
+																		{
+																			"name": "RXNORM",
+																			"entityId": "202433"
+																		}
+																	],
+																	"category": "MedicationName",
+																	"length": 7
+																},
+																"name": "Medication"
+															}
+														]
+													},
+													{
+														"relationType": "FrequencyOfMedication",
+														"roles": [
+															{
+																"entity": {
+																	"normalizedText": "Tylenol",
+																	"confidenceScore": 1,
+																	"text": "Tylenol",
+																	"offset": 8,
+																	"dataSources": [
+																		{
+																			"name": "UMLS",
+																			"entityId": "C0699142"
+																		},
+																		{
+																			"name": "AOD",
+																			"entityId": "0000028876"
+																		},
+																		{
+																			"name": "CHV",
+																			"entityId": "0000044376"
+																		},
+																		{
+																			"name": "MMSL",
+																			"entityId": "6732"
+																		},
+																		{
+																			"name": "MSH",
+																			"entityId": "D000082"
+																		},
+																		{
+																			"name": "NCI",
+																			"entityId": "C198"
+																		},
+																		{
+																			"name": "NCI_DTP",
+																			"entityId": "NSC0003991"
+																		},
+																		{
+																			"name": "PDQ",
+																			"entityId": "CDR0000039129"
+																		},
+																		{
+																			"name": "RXNORM",
+																			"entityId": "202433"
+																		}
+																	],
+																	"category": "MedicationName",
+																	"length": 7
+																},
+																"name": "Medication"
+															},
+															{
+																"entity": {
+																	"confidenceScore": 1,
+																	"text": "every 4 hours",
+																	"offset": 16,
+																	"dataSources": [],
+																	"category": "Frequency",
+																	"length": 13
+																},
+																"name": "Frequency"
+															}
+														]
+													}
+												]
+											}
+										}
+									},
+									{
+										"0": "6-drops of Vitamin B-12 every evening",
+										"1": {
+											"result": {
+												"id": "0",
+												"warnings": [],
+												"entities": [
+													{
+														"confidenceScore": 0.97,
+														"text": "6-drops",
+														"offset": 0,
+														"dataSources": [],
+														"category": "Dosage",
+														"length": 7
+													},
+													{
+														"normalizedText": "vitamin B12",
+														"confidenceScore": 0.99,
+														"text": "Vitamin B-12",
+														"offset": 11,
+														"dataSources": [
+															{
+																"name": "UMLS",
+																"entityId": "C0042845"
+															},
+															{
+																"name": "AOD",
+																"entityId": "0000018245"
+															},
+															{
+																"name": "ATC",
+																"entityId": "B03BA01"
+															},
+															{
+																"name": "CCPSS",
+																"entityId": "1001208"
+															},
+															{
+																"name": "CHV",
+																"entityId": "0000013050"
+															},
+															{
+																"name": "CPM",
+																"entityId": "30915"
+															},
+															{
+																"name": "CSP",
+																"entityId": "3147-6039"
+															},
+															{
+																"name": "DRUGBANK",
+																"entityId": "DB00115"
+															},
+															{
+																"name": "GS",
+																"entityId": "938"
+															},
+															{
+																"name": "LCH_NW",
+																"entityId": "sh85143970"
+															},
+															{
+																"name": "LNC",
+																"entityId": "LP31689-0"
+															},
+															{
+																"name": "MEDCIN",
+																"entityId": "41297"
+															},
+															{
+																"name": "MMSL",
+																"entityId": "5682"
+															},
+															{
+																"name": "MSH",
+																"entityId": "D014805"
+															},
+															{
+																"name": "MTHSPL",
+																"entityId": "P6YC3EG204"
+															},
+															{
+																"name": "NCI",
+																"entityId": "C939"
+															},
+															{
+																"name": "NCI_CRCH",
+																"entityId": "C939"
+															},
+															{
+																"name": "NCI_CTRP",
+																"entityId": "C939"
+															},
+															{
+																"name": "NCI_DCP",
+																"entityId": "04086"
+															},
+															{
+																"name": "NCI_DTP",
+																"entityId": "NSC0080365"
+															},
+															{
+																"name": "NCI_FDA",
+																"entityId": "8406EY2OQA"
+															},
+															{
+																"name": "NCI_NCI-GLOSS",
+																"entityId": "CDR0000390323"
+															},
+															{
+																"name": "NDDF",
+																"entityId": "001043"
+															},
+															{
+																"name": "PDQ",
+																"entityId": "CDR0000530928"
+															},
+															{
+																"name": "RCD",
+																"entityId": "X80RX"
+															},
+															{
+																"name": "RXNORM",
+																"entityId": "11248"
+															},
+															{
+																"name": "SNM",
+																"entityId": "F-16260"
+															},
+															{
+																"name": "SNMI",
+																"entityId": "F-BB360"
+															},
+															{
+																"name": "SNOMEDCT_US",
+																"entityId": "419382002"
+															},
+															{
+																"name": "USP",
+																"entityId": "m20750"
+															},
+															{
+																"name": "VANDF",
+																"entityId": "4017441"
+															}
+														],
+														"category": "MedicationName",
+														"length": 12
+													},
+													{
+														"confidenceScore": 1,
+														"text": "every evening",
+														"offset": 24,
+														"dataSources": [],
+														"category": "Frequency",
+														"length": 13
+													}
+												],
+												"entityRelation": [
+													{
+														"relationType": "DosageOfMedication",
+														"roles": [
+															{
+																"entity": {
+																	"confidenceScore": 0.97,
+																	"text": "6-drops",
+																	"offset": 0,
+																	"dataSources": [],
+																	"category": "Dosage",
+																	"length": 7
+																},
+																"name": "Dosage"
+															},
+															{
+																"entity": {
+																	"normalizedText": "vitamin B12",
+																	"confidenceScore": 0.99,
+																	"text": "Vitamin B-12",
+																	"offset": 11,
+																	"dataSources": [
+																		{
+																			"name": "UMLS",
+																			"entityId": "C0042845"
+																		},
+																		{
+																			"name": "AOD",
+																			"entityId": "0000018245"
+																		},
+																		{
+																			"name": "ATC",
+																			"entityId": "B03BA01"
+																		},
+																		{
+																			"name": "CCPSS",
+																			"entityId": "1001208"
+																		},
+																		{
+																			"name": "CHV",
+																			"entityId": "0000013050"
+																		},
+																		{
+																			"name": "CPM",
+																			"entityId": "30915"
+																		},
+																		{
+																			"name": "CSP",
+																			"entityId": "3147-6039"
+																		},
+																		{
+																			"name": "DRUGBANK",
+																			"entityId": "DB00115"
+																		},
+																		{
+																			"name": "GS",
+																			"entityId": "938"
+																		},
+																		{
+																			"name": "LCH_NW",
+																			"entityId": "sh85143970"
+																		},
+																		{
+																			"name": "LNC",
+																			"entityId": "LP31689-0"
+																		},
+																		{
+																			"name": "MEDCIN",
+																			"entityId": "41297"
+																		},
+																		{
+																			"name": "MMSL",
+																			"entityId": "5682"
+																		},
+																		{
+																			"name": "MSH",
+																			"entityId": "D014805"
+																		},
+																		{
+																			"name": "MTHSPL",
+																			"entityId": "P6YC3EG204"
+																		},
+																		{
+																			"name": "NCI",
+																			"entityId": "C939"
+																		},
+																		{
+																			"name": "NCI_CRCH",
+																			"entityId": "C939"
+																		},
+																		{
+																			"name": "NCI_CTRP",
+																			"entityId": "C939"
+																		},
+																		{
+																			"name": "NCI_DCP",
+																			"entityId": "04086"
+																		},
+																		{
+																			"name": "NCI_DTP",
+																			"entityId": "NSC0080365"
+																		},
+																		{
+																			"name": "NCI_FDA",
+																			"entityId": "8406EY2OQA"
+																		},
+																		{
+																			"name": "NCI_NCI-GLOSS",
+																			"entityId": "CDR0000390323"
+																		},
+																		{
+																			"name": "NDDF",
+																			"entityId": "001043"
+																		},
+																		{
+																			"name": "PDQ",
+																			"entityId": "CDR0000530928"
+																		},
+																		{
+																			"name": "RCD",
+																			"entityId": "X80RX"
+																		},
+																		{
+																			"name": "RXNORM",
+																			"entityId": "11248"
+																		},
+																		{
+																			"name": "SNM",
+																			"entityId": "F-16260"
+																		},
+																		{
+																			"name": "SNMI",
+																			"entityId": "F-BB360"
+																		},
+																		{
+																			"name": "SNOMEDCT_US",
+																			"entityId": "419382002"
+																		},
+																		{
+																			"name": "USP",
+																			"entityId": "m20750"
+																		},
+																		{
+																			"name": "VANDF",
+																			"entityId": "4017441"
+																		}
+																	],
+																	"category": "MedicationName",
+																	"length": 12
+																},
+																"name": "Medication"
+															}
+														]
+													},
+													{
+														"relationType": "FrequencyOfMedication",
+														"roles": [
+															{
+																"entity": {
+																	"normalizedText": "vitamin B12",
+																	"confidenceScore": 0.99,
+																	"text": "Vitamin B-12",
+																	"offset": 11,
+																	"dataSources": [
+																		{
+																			"name": "UMLS",
+																			"entityId": "C0042845"
+																		},
+																		{
+																			"name": "AOD",
+																			"entityId": "0000018245"
+																		},
+																		{
+																			"name": "ATC",
+																			"entityId": "B03BA01"
+																		},
+																		{
+																			"name": "CCPSS",
+																			"entityId": "1001208"
+																		},
+																		{
+																			"name": "CHV",
+																			"entityId": "0000013050"
+																		},
+																		{
+																			"name": "CPM",
+																			"entityId": "30915"
+																		},
+																		{
+																			"name": "CSP",
+																			"entityId": "3147-6039"
+																		},
+																		{
+																			"name": "DRUGBANK",
+																			"entityId": "DB00115"
+																		},
+																		{
+																			"name": "GS",
+																			"entityId": "938"
+																		},
+																		{
+																			"name": "LCH_NW",
+																			"entityId": "sh85143970"
+																		},
+																		{
+																			"name": "LNC",
+																			"entityId": "LP31689-0"
+																		},
+																		{
+																			"name": "MEDCIN",
+																			"entityId": "41297"
+																		},
+																		{
+																			"name": "MMSL",
+																			"entityId": "5682"
+																		},
+																		{
+																			"name": "MSH",
+																			"entityId": "D014805"
+																		},
+																		{
+																			"name": "MTHSPL",
+																			"entityId": "P6YC3EG204"
+																		},
+																		{
+																			"name": "NCI",
+																			"entityId": "C939"
+																		},
+																		{
+																			"name": "NCI_CRCH",
+																			"entityId": "C939"
+																		},
+																		{
+																			"name": "NCI_CTRP",
+																			"entityId": "C939"
+																		},
+																		{
+																			"name": "NCI_DCP",
+																			"entityId": "04086"
+																		},
+																		{
+																			"name": "NCI_DTP",
+																			"entityId": "NSC0080365"
+																		},
+																		{
+																			"name": "NCI_FDA",
+																			"entityId": "8406EY2OQA"
+																		},
+																		{
+																			"name": "NCI_NCI-GLOSS",
+																			"entityId": "CDR0000390323"
+																		},
+																		{
+																			"name": "NDDF",
+																			"entityId": "001043"
+																		},
+																		{
+																			"name": "PDQ",
+																			"entityId": "CDR0000530928"
+																		},
+																		{
+																			"name": "RCD",
+																			"entityId": "X80RX"
+																		},
+																		{
+																			"name": "RXNORM",
+																			"entityId": "11248"
+																		},
+																		{
+																			"name": "SNM",
+																			"entityId": "F-16260"
+																		},
+																		{
+																			"name": "SNMI",
+																			"entityId": "F-BB360"
+																		},
+																		{
+																			"name": "SNOMEDCT_US",
+																			"entityId": "419382002"
+																		},
+																		{
+																			"name": "USP",
+																			"entityId": "m20750"
+																		},
+																		{
+																			"name": "VANDF",
+																			"entityId": "4017441"
+																		}
+																	],
+																	"category": "MedicationName",
+																	"length": 12
+																},
+																"name": "Medication"
+															},
+															{
+																"entity": {
+																	"confidenceScore": 1,
+																	"text": "every evening",
+																	"offset": 24,
+																	"dataSources": [],
+																	"category": "Frequency",
+																	"length": 13
+																},
+																"name": "Frequency"
+															}
+														]
+													}
+												]
+											}
+										}
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "text",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "response",
+										"type": "StructType(StructField(result,StructType(StructField(id,StringType,true), StructField(warnings,ArrayType(StructType(StructField(warningCode,StringType,true), StructField(message,StringType,true)),true),true), StructField(entities,ArrayType(StructType(StructField(assertion,StructType(StructField(association,StringType,true), StructField(certainty,StringType,true), StructField(conditionality,StringType,true)),true), StructField(category,StringType,true), StructField(confidenceScore,DoubleType,false), StructField(dataSources,ArrayType(StructType(StructField(name,StringType,true), StructField(entityId,StringType,true)),true),true), StructField(length,IntegerType,false), StructField(normalizedText,StringType,true), StructField(offset,IntegerType,false), StructField(subCategory,StringType,true), StructField(text,StringType,true)),true),true), StructField(entityRelation,ArrayType(StructType(StructField(relationType,StringType,true), StructField(roles,ArrayType(StructType(StructField(entity,StructType(StructField(assertion,StructType(StructField(association,StringType,true), StructField(certainty,StringType,true), StructField(conditionality,StringType,true)),true), StructField(category,StringType,true), StructField(confidenceScore,DoubleType,false), StructField(dataSources,ArrayType(StructType(StructField(name,StringType,true), StructField(entityId,StringType,true)),true),true), StructField(length,IntegerType,false), StructField(normalizedText,StringType,true), StructField(offset,IntegerType,false), StructField(subCategory,StringType,true), StructField(text,StringType,true)),true), StructField(name,StringType,true)),true),true)),true),true)),true), StructField(error,StructType(StructField(errorCode,StringType,true), StructField(errorMessage,StringType,true), StructField(target,StringType,true)),true), StructField(statistics,StructType(StructField(charactersCount,IntegerType,false), StructField(transactionsCount,IntegerType,false)),true))"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"0772baa1-f777-4462-9522-43c401f25505": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": [
+											"您好，您叫什么名字？",
+											"再见"
+										]
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "translation",
+										"type": "ArrayType(StringType,true)"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"fb78f578-f165-4236-a3cd-79a085bcad0b": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "https://mmlspark.blob.core.windows.net/datasets/FormRecognizer/business_card.jpg",
+										"1": {
+											"Addresses": {
+												"type": "array",
+												"valueArray": [
+													"{\"type\":\"string\",\"valueString\":\"2 Kingdom Street Paddington, London, W2 6BD\",\"text\":\"2 Kingdom Street Paddington, London, W2 6BD\",\"boundingBox\":[1227.3,2138.3,2520.2,1690.5,2597,1912.3,1304.1,2360.1],\"page\":1,\"confidence\":0.98}"
+												]
+											},
+											"MobilePhones": {
+												"type": "array",
+												"valueArray": [
+													"{\"type\":\"phoneNumber\",\"text\":\"+44 (0) 7911 123456\",\"boundingBox\":[2426.8,1040.1,3065.5,846,3087.2,917.6,2448.5,1111.7],\"page\":1,\"confidence\":0.99}"
+												]
+											},
+											"Departments": {
+												"type": "array",
+												"valueArray": [
+													"{\"type\":\"string\",\"valueString\":\"Cloud & Al Department\",\"text\":\"Cloud & Al Department\",\"boundingBox\":[473.6,1409.5,1586,1134,1607.3,1219.8,494.9,1495.3],\"page\":1,\"confidence\":0.989}"
+												]
+											},
+											"CompanyNames": {
+												"type": "array",
+												"valueArray": [
+													"{\"type\":\"string\",\"valueString\":\"Contoso\",\"text\":\"Contoso\",\"boundingBox\":[1146,1926,2224,1587,2285,1756,1202,2099],\"page\":1,\"confidence\":0.168}"
+												]
+											},
+											"Emails": {
+												"type": "array",
+												"valueArray": [
+													"{\"type\":\"string\",\"valueString\":\"avery.smith@contoso.com\",\"text\":\"avery.smith@contoso.com\",\"boundingBox\":[2106,934,2908,706,2921,769,2122,993],\"page\":1,\"confidence\":0.99}"
+												]
+											},
+											"Websites": {
+												"type": "array",
+												"valueArray": [
+													"{\"type\":\"string\",\"valueString\":\"https://www.contoso.com/\",\"text\":\"https://www.contoso.com/\",\"boundingBox\":[2120,1003,2981,757,3006,824,2139,1075],\"page\":1,\"confidence\":0.99}"
+												]
+											},
+											"JobTitles": {
+												"type": "array",
+												"valueArray": [
+													"{\"type\":\"string\",\"valueString\":\"Senior Researcher\",\"text\":\"Senior Researcher\",\"boundingBox\":[451,1312,1315.9,1103.6,1334.7,1181.7,469.8,1390],\"page\":1,\"confidence\":0.99}"
+												]
+											},
+											"ContactNames": {
+												"type": "array",
+												"valueArray": [
+													"{\"type\":\"object\",\"valueObject\":{\"FirstName\":{\"type\":\"string\",\"valueString\":\"Avery\",\"text\":\"Avery\",\"boundingBox\":[666,1102,1111,995,1140,1114,696,1216],\"page\":1},\"LastName\":{\"type\":\"string\",\"valueString\":\"Smith\",\"text\":\"Smith\",\"boundingBox\":[1170,981,1571,881,1600,1000,1200,1100],\"page\":1}},\"text\":\"Dr. Avery Smith\",\"boundingBox\":[414.1,1153,1572,880.8,1601.3,1005.6,443.5,1277.9],\"page\":1,\"confidence\":0.979}"
+												]
+											},
+											"WorkPhones": {
+												"type": "array",
+												"valueArray": [
+													"{\"type\":\"phoneNumber\",\"text\":\"+44 (0) 20 9876 5432\",\"boundingBox\":[2468.2,1118.1,3130.3,914.6,3152.9,988.2,2490.8,1191.6],\"page\":1,\"confidence\":0.989}"
+												]
+											},
+											"Faxes": {
+												"type": "array",
+												"valueArray": [
+													"{\"type\":\"phoneNumber\",\"text\":\"+44 (0) 20 6789 2345\",\"boundingBox\":[2520.4,1195.5,3191.8,983.5,3215.8,1059.2,2544.3,1271.3],\"page\":1,\"confidence\":0.99}"
+												]
+											}
+										}
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "source",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "documents",
+										"type": "MapType(StringType,StructType(StructField(type,StringType,true), StructField(page,IntegerType,true), StructField(confidence,DoubleType,true), StructField(boundingBox,ArrayType(DoubleType,true),true), StructField(text,StringType,true), StructField(valueString,StringType,true), StructField(valuePhoneNumber,StringType,true), StructField(valueNumber,DoubleType,true), StructField(valueDate,StringType,true), StructField(valueTime,StringType,true), StructField(valueObject,StringType,true), StructField(valueArray,ArrayType(StringType,true),true)),true)"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"c172bf74-668f-4193-a299-f7912fc57b41": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/ComputerVision/Images/objects.jpg"
+									},
+									{
+										"0": "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/ComputerVision/Images/dog.jpg"
+									},
+									{
+										"0": "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/ComputerVision/Images/house.jpg"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "image",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "tags",
+										"type": "ArrayType(StringType,true)"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"fcfee52e-0fca-45d5-ad2c-9a93912ac842": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [],
+								"schema": [
+									{
+										"key": "0",
+										"name": "url",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/61691a9f-545c-41c4-baf2-d901d60ef9aa/resourceGroups/cgmsynapsetest/providers/Microsoft.Synapse/workspaces/cgmsynapsetest/bigDataPools/synapsemlpool",
+				"name": "synapsemlpool",
+				"type": "Spark",
+				"endpoint": "https://cgmsynapsetest.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/synapsemlpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.1",
+				"nodeCount": 3,
+				"cores": 8,
+				"memory": 56,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"source": [
+					"<img width=\"200\"  src=\"https://mmlspark.blob.core.windows.net/graphics/Readme/cog_services_on_spark_2.svg\" />\n",
+					"\n",
+					"# Cognitive Services\n",
+					"\n",
+					"[Azure Cognitive Services](https://azure.microsoft.com/en-us/services/cognitive-services/) are a suite of APIs, SDKs, and services available to help developers build intelligent applications without having direct AI or data science skills or knowledge by enabling developers to easily add cognitive features into their applications. The goal of Azure Cognitive Services is to help developers create applications that can see, hear, speak, understand, and even begin to reason. The catalog of services within Azure Cognitive Services can be categorized into five main pillars - Vision, Speech, Language, Web Search, and Decision.\n",
+					"\n",
+					"## Usage\n",
+					"\n",
+					"### Vision\n",
+					"[**Computer Vision**](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/)\n",
+					"- Describe: provides description of an image in human readable language ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/DescribeImage.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.DescribeImage))\n",
+					"- Analyze (color, image type, face, adult/racy content): analyzes visual features of an image ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/AnalyzeImage.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.AnalyzeImage))\n",
+					"- OCR: reads text from an image ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/OCR.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.OCR))\n",
+					"- Recognize Text: reads text from an image ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/RecognizeText.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.RecognizeText))\n",
+					"- Thumbnail: generates a thumbnail of user-specified size from the image ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/GenerateThumbnails.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.GenerateThumbnails))\n",
+					"- Recognize domain-specific content: recognizes domain-specific content (celebrity, landmark) ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/RecognizeDomainSpecificContent.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.RecognizeDomainSpecificContent))\n",
+					"- Tag: identifies list of words that are relevant to the in0put image ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/TagImage.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.TagImage))\n",
+					"\n",
+					"[**Face**](https://azure.microsoft.com/en-us/services/cognitive-services/face/)\n",
+					"- Detect: detects human faces in an image ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/DetectFace.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.DetectFace))\n",
+					"- Verify: verifies whether two faces belong to a same person, or a face belongs to a person ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/VerifyFaces.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.VerifyFaces))\n",
+					"- Identify: finds the closest matches of the specific query person face from a person group ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/IdentifyFaces.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.IdentifyFaces))\n",
+					"- Find similar: finds similar faces to the query face in a face list ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/FindSimilarFace.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.FindSimilarFace))\n",
+					"- Group: divides a group of faces into disjoint groups based on similarity ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/GroupFaces.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.GroupFaces))\n",
+					"\n",
+					"### Speech\n",
+					"[**Speech Services**](https://azure.microsoft.com/en-us/services/cognitive-services/speech-services/)\n",
+					"- Speech-to-text: transcribes audio streams ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/SpeechToText.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.SpeechToText))\n",
+					"- Conversation Transcription: transcribes audio streams into live transcripts with identified speakers. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/ConversationTranscription.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.ConversationTranscription))\n",
+					"- Text to Speech: Converts text to realistic audio ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/TextToSpeech.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.TextToSpeech))\n",
+					"\n",
+					"\n",
+					"### Language\n",
+					"[**Text Analytics**](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/)\n",
+					"- Language detection: detects language of the input text ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/LanguageDetector.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.LanguageDetector))\n",
+					"- Key phrase extraction: identifies the key talking points in the input text ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/KeyPhraseExtractor.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.KeyPhraseExtractor))\n",
+					"- Named entity recognition: identifies known entities and general named entities in the input text ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/NER.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.NER))\n",
+					"- Sentiment analysis: returns a score betwee 0 and 1 indicating the sentiment in the input text ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/TextSentiment.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.TextSentiment))\n",
+					"- Healthcare Entity Extraction: Extracts medical entities and relationships from text. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/HealthcareSDK.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.HealthcareSDK))\n",
+					"\n",
+					"\n",
+					"### Translation\n",
+					"[**Translator**](https://azure.microsoft.com/en-us/services/cognitive-services/translator/)\n",
+					"- Translate: Translates text. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/Translate.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.Translate))\n",
+					"- Transliterate: Converts text in one language from one script to another script. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/Transliterate.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.Transliterate))\n",
+					"- Detect: Identifies the language of a piece of text. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/Detect.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.Detect))\n",
+					"- BreakSentence: Identifies the positioning of sentence boundaries in a piece of text. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/BreakSentence.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.BreakSentence))\n",
+					"- Dictionary Lookup: Provides alternative translations for a word and a small number of idiomatic phrases. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/DictionaryLookup.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.DictionaryLookup))\n",
+					"- Dictionary Examples: Provides examples that show how terms in the dictionary are used in context. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/DictionaryExamples.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.DictionaryExamples))\n",
+					"- Document Translation: Translates documents across all supported languages and dialects while preserving document structure and data format. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/DocumentTranslator.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.DocumentTranslator))\n",
+					"\n",
+					"### Form Recognizer\n",
+					"[**Form Recognizer**](https://azure.microsoft.com/en-us/services/form-recognizer/)\n",
+					"- Analyze Layout: Extract text and layout information from a given document. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/AnalyzeLayout.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.AnalyzeLayout))\n",
+					"- Analyze Receipts: Detects and extracts data from receipts using optical character recognition (OCR) and our receipt model, enabling you to easily extract structured data from receipts such as merchant name, merchant phone number, transaction date, transaction total, and more. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/AnalyzeReceipts.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.AnalyzeReceipts))\n",
+					"- Analyze Business Cards: Detects and extracts data from business cards using optical character recognition (OCR) and our business card model, enabling you to easily extract structured data from business cards such as contact names, company names, phone numbers, emails, and more. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/AnalyzeBusinessCards.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.AnalyzeBusinessCards))\n",
+					"- Analyze Invoices: Detects and extracts data from invoices using optical character recognition (OCR) and our invoice understanding deep learning models, enabling you to easily extract structured data from invoices such as customer, vendor, invoice ID, invoice due date, total, invoice amount due, tax amount, ship to, bill to, line items and more. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/AnalyzeInvoices.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.AnalyzeInvoices))\n",
+					"- Analyze ID Documents: Detects and extracts data from identification documents using optical character recognition (OCR) and our ID document model, enabling you to easily extract structured data from ID documents such as first name, last name, date of birth, document number, and more. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/AnalyzeIDDocuments.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.AnalyzeIDDocuments))\n",
+					"- Analyze Custom Form: Extracts information from forms (PDFs and images) into structured data based on a model created from a set of representative training forms. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/AnalyzeCustomModel.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.AnalyzeCustomModel))\n",
+					"- Get Custom Model: Get detailed information about a custom model. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/GetCustomModel.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/ListCustomModels.html))\n",
+					"- List Custom Models: Get information about all custom models. ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/ListCustomModels.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.ListCustomModels))\n",
+					"\n",
+					"### Decision\n",
+					"[**Anomaly Detector**](https://azure.microsoft.com/en-us/services/cognitive-services/anomaly-detector/)\n",
+					"- Anomaly status of latest point: generates a model using preceding points and determines whether the latest point is anomalous ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/DetectLastAnomaly.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.DetectLastAnomaly))\n",
+					"- Find anomalies: generates a model using an entire series and finds anomalies in the series ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/DetectAnomalies.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.DetectAnomalies))\n",
+					"\n",
+					"### Search\n",
+					"- [Bing Image search](https://azure.microsoft.com/en-us/services/cognitive-services/bing-image-search-api/) ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/com/microsoft/azure/synapse/ml/cognitive/BingImageSearch.html), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.BingImageSearch))\n",
+					"- [Azure Cognitive search](https://docs.microsoft.com/en-us/azure/search/search-what-is-azure-search) ([Scala](https://mmlspark.blob.core.windows.net/docs/0.9.5/scala/index.html#com.microsoft.azure.synapse.ml.cognitive.AzureSearchWriter$), [Python](https://mmlspark.blob.core.windows.net/docs/0.9.5/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.AzureSearchWriter))"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Prerequisites\n",
+					"\n",
+					"1. Follow the steps in [Getting started](https://docs.microsoft.com/en-us/azure/cognitive-services/big-data/getting-started) to set up your Azure Databricks and Cognitive Services environment. This tutorial shows you how to install SynapseML and how to create your Spark cluster in Databricks.\n",
+					"1. After you create a new notebook in Azure Databricks, copy the **Shared code** below and paste into a new cell in your notebook.\n",
+					"1. Choose a service sample, below, and copy paste it into a second new cell in your notebook.\n",
+					"1. Replace any of the service subscription key placeholders with your own key.\n",
+					"1. Choose the run button (triangle icon) in the upper right corner of the cell, then select **Run Cell**.\n",
+					"1. View results in a table below the cell."
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Shared code\n",
+					"\n",
+					"To get started, we'll need to add this code to the project:"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"%%configure -f\r\n",
+					"{\r\n",
+					"  \"name\": \"synapseml\",\r\n",
+					"  \"conf\": {\r\n",
+					"      \"spark.jars.packages\": \"com.microsoft.azure:synapseml_2.12:0.9.5-13-d1b51517-SNAPSHOT\",\r\n",
+					"      \"spark.jars.repositories\": \"https://mmlspark.azureedge.net/maven\",\r\n",
+					"      \"spark.jars.excludes\": \"org.scala-lang:scala-reflect,org.apache.spark:spark-tags_2.12,org.scalactic:scalactic_2.12,org.scalatest:scalatest_2.12\",\r\n",
+					"      \"spark.yarn.user.classpath.first\": \"true\"\r\n",
+					"  }\r\n",
+					"}"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from pyspark.sql.functions import udf, col\n",
+					"from synapse.ml.io.http import HTTPTransformer, http_udf\n",
+					"from requests import Request\n",
+					"from pyspark.sql.functions import lit\n",
+					"from pyspark.ml import PipelineModel\n",
+					"from pyspark.sql.functions import col\n",
+					"import os\n",
+					"\n",
+					"\n",
+					"#set the name of your key vault\n",
+					"keyVaultName = \"cgmsynapsevault\"\n",
+					"#name of your cog services key secret\n",
+					"cogsvcsSecretName = \"cogsvcskey\"\n",
+					"searchSecretName = \"searchkey\"\n",
+					"#set the region where you cognitive service is deployed\n",
+					"serviceLocation = \"eastus2\"\n",
+					""
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"if os.environ.get(\"AZURE_SERVICE\", None) == \"Microsoft.ProjectArcadia\":\n",
+					"    from pyspark.sql import SparkSession\n",
+					"    spark = SparkSession.builder.getOrCreate()\n",
+					"    from notebookutils.mssparkutils.credentials import getSecret\n",
+					"    os.environ['ANOMALY_API_KEY'] = getSecret(\n",
+					"        \"cgmsynapsevault\", \"cogsvcskey\")\n",
+					"    os.environ['COGNITIVE_SERVICE_KEY'] = getSecret(\"cgmsynapsevault\", \"cogsvcskey\")\n",
+					"    os.environ['BING_IMAGE_SEARCH_KEY'] = getSecret(\n",
+					"        \"cgmsynapsevault\", \"searchkey\")\n",
+					"    os.environ['VISION_API_KEY'] = getSecret(\n",
+					"        \"cgmsynapsevault\", \"cogsvcskey\")\n",
+					"    os.environ['AZURE_SEARCH_KEY'] = getSecret(\n",
+					"        \"cgmsynapsevault\", \"searchkey\")"
+				],
+				"execution_count": 9
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from synapse.ml.cognitive import *\n",
+					"\n",
+					"# A general Cognitive Services key for Text Analytics, Computer Vision and Form Recognizer (or use separate keys that belong to each service)\n",
+					"service_key = os.environ[\"COGNITIVE_SERVICE_KEY\"]\n",
+					"# A Bing Search v7 subscription key\n",
+					"bing_search_key = os.environ[\"BING_IMAGE_SEARCH_KEY\"]\n",
+					"# An Anomaly Dectector subscription key\n",
+					"anomaly_key = os.environ[\"ANOMALY_API_KEY\"]\n",
+					"# A Translator subscription key\n",
+					"translator_key = os.environ[\"COGNITIVE_SERVICE_KEY\"]"
+				],
+				"execution_count": 10
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Text Analytics sample\n",
+					"\n",
+					"The [Text Analytics](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/) service provides several algorithms for extracting intelligent insights from text. For example, we can find the sentiment of given input text. The service will return a score between 0.0 and 1.0 where low scores indicate negative sentiment and high score indicates positive sentiment.  This sample uses three simple sentences and returns the sentiment for each."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"# Create a dataframe that's tied to it's column names\n",
+					"df = spark.createDataFrame([\n",
+					"    (\"I am so happy today, its sunny!\", \"en-US\"),\n",
+					"    (\"I am frustrated by this rush hour traffic\", \"en-US\"),\n",
+					"    (\"The cognitive services on spark aint bad\", \"en-US\"),\n",
+					"], [\"text\", \"language\"])\n",
+					"\n",
+					"# Run the Text Analytics service with options\n",
+					"sentiment = (TextSentiment()\n",
+					"             .setTextCol(\"text\")\n",
+					"             .setLocation(\"eastus2\")\n",
+					"             .setSubscriptionKey(service_key)\n",
+					"             .setOutputCol(\"sentiment\")\n",
+					"             .setErrorCol(\"error\")\n",
+					"             .setLanguageCol(\"language\"))\n",
+					"\n",
+					"# Show the results of your text query in a table format\n",
+					"display(sentiment.transform(df).select(\"text\", col(\n",
+					"    \"sentiment\")[0].getItem(\"sentiment\").alias(\"sentiment\")))"
+				],
+				"execution_count": 11
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Text Analytics for Health Sample\n",
+					"\n",
+					"The [Text Analytics for Heatlth Service](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/text-analytics-for-health/overview?tabs=ner) extracts and labels relevant medical information from unstructured texts such as doctor's notes, discharge summaries, clinical documents, and electronic health records."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"df = spark.createDataFrame([\n",
+					"  (\"20mg of ibuprofen twice a day\",),\n",
+					"  (\"1tsp of Tylenol every 4 hours\",),\n",
+					"  (\"6-drops of Vitamin B-12 every evening\",)], [\"text\"])\n",
+					"\n",
+					"healthcare = (HealthcareSDK()\n",
+					"    .setSubscriptionKey(service_key)\n",
+					"    .setLocation(\"eastus2\")\n",
+					"    .setLanguage(\"en\")\n",
+					"    .setOutputCol(\"response\"))\n",
+					"\n",
+					"display(healthcare.transform(df))"
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Translator sample\n",
+					"[Translator](https://azure.microsoft.com/en-us/services/cognitive-services/translator/) is a cloud-based machine translation service and is part of the Azure Cognitive Services family of cognitive APIs used to build intelligent apps. Translator is easy to integrate in your applications, websites, tools, and solutions. It allows you to add multi-language user experiences in 90 languages and dialects and can be used for text translation with any operating system. In this sample, we do a simple text translation by providing the sentences you want to translate and target languages you want to translate to."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"from pyspark.sql.functions import col, flatten\n",
+					"\n",
+					"# Create a dataframe including sentences you want to translate\n",
+					"df = spark.createDataFrame([\n",
+					"  ([\"Hello, what is your name?\", \"Bye\"],)\n",
+					"], [\"text\",])\n",
+					"\n",
+					"# Run the Translator service with options\n",
+					"translate = (Translate()\n",
+					"    .setSubscriptionKey(translator_key)\n",
+					"    .setLocation(\"eastus2\")\n",
+					"    .setTextCol(\"text\")\n",
+					"    .setToLanguage([\"zh-Hans\"])\n",
+					"    .setOutputCol(\"translation\"))\n",
+					"\n",
+					"# Show the results of the translation.\n",
+					"display(translate\n",
+					"      .transform(df)\n",
+					"      .withColumn(\"translation\", flatten(col(\"translation.translations\")))\n",
+					"      .withColumn(\"translation\", col(\"translation.text\"))\n",
+					"      .select(\"translation\"))"
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Form Recognizer sample\n",
+					"[Form Recognizer](https://azure.microsoft.com/en-us/services/form-recognizer/) is a part of Azure Applied AI Services that lets you build automated data processing software using machine learning technology. Identify and extract text, key/value pairs, selection marks, tables, and structure from your documents—the service outputs structured data that includes the relationships in the original file, bounding boxes, confidence and more. In this sample, we analyze a business card image and extract its information into structured data."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"from pyspark.sql.functions import col, explode\n",
+					"\n",
+					"# Create a dataframe containing the source files\n",
+					"imageDf = spark.createDataFrame([\n",
+					"  (\"https://mmlspark.blob.core.windows.net/datasets/FormRecognizer/business_card.jpg\",)\n",
+					"], [\"source\",])\n",
+					"\n",
+					"# Run the Form Recognizer service\n",
+					"analyzeBusinessCards = (AnalyzeBusinessCards()\n",
+					"                 .setSubscriptionKey(service_key)\n",
+					"                 .setLocation(\"eastus2\")\n",
+					"                 .setImageUrlCol(\"source\")\n",
+					"                 .setOutputCol(\"businessCards\"))\n",
+					"\n",
+					"# Show the results of recognition.\n",
+					"display(analyzeBusinessCards\n",
+					"        .transform(imageDf)\n",
+					"        .withColumn(\"documents\", explode(col(\"businessCards.analyzeResult.documentResults.fields\")))\n",
+					"        .select(\"source\", \"documents\"))"
+				],
+				"execution_count": 16
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Computer Vision sample\n",
+					"\n",
+					"[Computer Vision](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/) analyzes images to identify structure such as faces, objects, and natural-language descriptions. In this sample, we tag a list of images. Tags are one-word descriptions of things in the image like recognizable objects, people, scenery, and actions."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"# Create a dataframe with the image URLs\n",
+					"df = spark.createDataFrame([\n",
+					"    (\"https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/ComputerVision/Images/objects.jpg\", ),\n",
+					"    (\"https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/ComputerVision/Images/dog.jpg\", ),\n",
+					"    (\"https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/ComputerVision/Images/house.jpg\", )\n",
+					"], [\"image\", ])\n",
+					"\n",
+					"# Run the Computer Vision service. Analyze Image extracts infortmation from/about the images.\n",
+					"analysis = (AnalyzeImage()\n",
+					"            .setLocation(\"eastus\")\n",
+					"            .setSubscriptionKey(service_key)\n",
+					"            .setVisualFeatures([\"Categories\", \"Color\", \"Description\", \"Faces\", \"Objects\", \"Tags\"])\n",
+					"            .setOutputCol(\"analysis_results\")\n",
+					"            .setImageUrlCol(\"image\")\n",
+					"            .setErrorCol(\"error\"))\n",
+					"\n",
+					"# Show the results of what you wanted to pull out of the images.\n",
+					"display(analysis.transform(df).select(\n",
+					"    \"image\", \"analysis_results.description.tags\"))\n",
+					""
+				],
+				"execution_count": 17
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Bing Image Search sample\n",
+					"\n",
+					"[Bing Image Search](https://azure.microsoft.com/en-us/services/cognitive-services/bing-image-search-api/) searches the web to retrieve images related to a user's natural language query. In this sample, we use a text query that looks for images with quotes. It returns a list of image URLs that contain photos related to our query."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"# Number of images Bing will return per query\n",
+					"imgsPerBatch = 10\n",
+					"# A list of offsets, used to page into the search results\n",
+					"offsets = [(i*imgsPerBatch,) for i in range(100)]\n",
+					"# Since web content is our data, we create a dataframe with options on that data: offsets\n",
+					"bingParameters = spark.createDataFrame(offsets, [\"offset\"])\n",
+					"\n",
+					"# Run the Bing Image Search service with our text query\n",
+					"bingSearch = (BingImageSearch()\n",
+					"              .setSubscriptionKey(bing_search_key)\n",
+					"              .setOffsetCol(\"offset\")\n",
+					"              .setQuery(\"Martin Luther King Jr. quotes\")\n",
+					"              .setCount(imgsPerBatch)\n",
+					"              .setOutputCol(\"images\"))\n",
+					"\n",
+					"# Transformer that extracts and flattens the richly structured output of Bing Image Search into a simple URL column\n",
+					"getUrls = BingImageSearch.getUrlTransformer(\"images\", \"url\")\n",
+					"\n",
+					"# This displays the full results returned, uncomment to use\n",
+					"# display(bingSearch.transform(bingParameters))\n",
+					"\n",
+					"# Since we have two services, they are put into a pipeline\n",
+					"pipeline = PipelineModel(stages=[bingSearch, getUrls])\n",
+					"\n",
+					"# Show the results of your search: image URLs\n",
+					"display(pipeline.transform(bingParameters))\n",
+					""
+				],
+				"execution_count": 18
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Speech-to-Text sample\n",
+					"The [Speech-to-text](https://azure.microsoft.com/en-us/services/cognitive-services/speech-services/) service converts streams or files of spoken audio to text. In this sample, we transcribe one audio file."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# Create a dataframe with our audio URLs, tied to the column called \"url\"\n",
+					"df = spark.createDataFrame([(\"https://mmlspark.blob.core.windows.net/datasets/Speech/audio2.wav\",)\n",
+					"                            ], [\"url\"])\n",
+					"\n",
+					"# Run the Speech-to-text service to translate the audio into text\n",
+					"speech_to_text = (SpeechToTextSDK()\n",
+					"                  .setSubscriptionKey(service_key)\n",
+					"                  .setLocation(\"eastus\")\n",
+					"                  .setOutputCol(\"text\")\n",
+					"                  .setAudioDataCol(\"url\")\n",
+					"                  .setLanguage(\"en-US\")\n",
+					"                  .setProfanity(\"Masked\"))\n",
+					"\n",
+					"# Show the results of the translation\n",
+					"display(speech_to_text.transform(df).select(\"url\", \"text.DisplayText\"))\n",
+					""
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Text-to-Speech sample\n",
+					"[Text to speech](https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/#overview) is a service that allows one to build apps and services that speak naturally, choosing from more than 270 neural voices across 119 languages and variants."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from synapse.ml.cognitive import TextToSpeech\n",
+					"\n",
+					"# Create a dataframe with text and an output file location\n",
+					"df = spark.createDataFrame([(\"Reading out lod is fun! Check out aka.ms/spark for more information\", \"dbfs:/output.mp3\")], [\"text\", \"output_file\"])\n",
+					" \n",
+					"tts = (TextToSpeech()\n",
+					"    .setSubscriptionKey(service_key)\n",
+					"    .setTextCol(\"text\")\n",
+					"    .setLocation(\"eastus\")\n",
+					"    .setVoiceName(\"en-US-JennyNeural\") \n",
+					"    .setOutputFileCol(\"output_file\"))\n",
+					"\n",
+					"# Check to make sure there were no errors during audio creation\n",
+					"display(tts.transform(df))"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Anomaly Detector sample\n",
+					"\n",
+					"[Anomaly Detector](https://azure.microsoft.com/en-us/services/cognitive-services/anomaly-detector/) is great for detecting irregularities in your time series data. In this sample, we use the service to find anomalies in the entire time series."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# Create a dataframe with the point data that Anomaly Detector requires\n",
+					"df = spark.createDataFrame([\n",
+					"    (\"1972-01-01T00:00:00Z\", 826.0),\n",
+					"    (\"1972-02-01T00:00:00Z\", 799.0),\n",
+					"    (\"1972-03-01T00:00:00Z\", 890.0),\n",
+					"    (\"1972-04-01T00:00:00Z\", 900.0),\n",
+					"    (\"1972-05-01T00:00:00Z\", 766.0),\n",
+					"    (\"1972-06-01T00:00:00Z\", 805.0),\n",
+					"    (\"1972-07-01T00:00:00Z\", 821.0),\n",
+					"    (\"1972-08-01T00:00:00Z\", 20000.0),\n",
+					"    (\"1972-09-01T00:00:00Z\", 883.0),\n",
+					"    (\"1972-10-01T00:00:00Z\", 898.0),\n",
+					"    (\"1972-11-01T00:00:00Z\", 957.0),\n",
+					"    (\"1972-12-01T00:00:00Z\", 924.0),\n",
+					"    (\"1973-01-01T00:00:00Z\", 881.0),\n",
+					"    (\"1973-02-01T00:00:00Z\", 837.0),\n",
+					"    (\"1973-03-01T00:00:00Z\", 9000.0)\n",
+					"], [\"timestamp\", \"value\"]).withColumn(\"group\", lit(\"series1\"))\n",
+					"\n",
+					"# Run the Anomaly Detector service to look for irregular data\n",
+					"anamoly_detector = (SimpleDetectAnomalies()\n",
+					"                    .setSubscriptionKey(anomaly_key)\n",
+					"                    .setLocation(\"eastus\")\n",
+					"                    .setTimestampCol(\"timestamp\")\n",
+					"                    .setValueCol(\"value\")\n",
+					"                    .setOutputCol(\"anomalies\")\n",
+					"                    .setGroupbyCol(\"group\")\n",
+					"                    .setGranularity(\"monthly\"))\n",
+					"\n",
+					"# Show the full results of the analysis with the anomalies marked as \"True\"\n",
+					"display(anamoly_detector.transform(df).select(\n",
+					"    \"timestamp\", \"value\", \"anomalies.isAnomaly\"))"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Arbitrary web APIs\n",
+					"\n",
+					"With HTTP on Spark, any web service can be used in your big data pipeline. In this example, we use the [World Bank API](http://api.worldbank.org/v2/country/) to get information about various countries around the world."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# Use any requests from the python requests library\n",
+					"\n",
+					"def world_bank_request(country):\n",
+					"    return Request(\"GET\", \"http://api.worldbank.org/v2/country/{}?format=json\".format(country))\n",
+					"\n",
+					"\n",
+					"# Create a dataframe with spcificies which countries we want data on\n",
+					"df = (spark.createDataFrame([(\"br\",), (\"usa\",)], [\"country\"])\n",
+					"      .withColumn(\"request\", http_udf(world_bank_request)(col(\"country\"))))\n",
+					"\n",
+					"# Much faster for big data because of the concurrency :)\n",
+					"client = (HTTPTransformer()\n",
+					"          .setConcurrency(3)\n",
+					"          .setInputCol(\"request\")\n",
+					"          .setOutputCol(\"response\"))\n",
+					"\n",
+					"# Get the body of the response\n",
+					"\n",
+					"\n",
+					"def get_response_body(resp):\n",
+					"    return resp.entity.content.decode()\n",
+					"\n",
+					"\n",
+					"# Show the details of the country data returned\n",
+					"display(client.transform(df)\n",
+					"        .select(\"country\", udf(get_response_body)(col(\"response\"))\n",
+					"        .alias(\"response\")))\n",
+					""
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Azure Cognitive search sample\n",
+					"\n",
+					"In this example, we show how you can enrich data using Cognitive Skills and write to an Azure Search Index using SynapseML."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"VISION_API_KEY = os.environ['VISION_API_KEY']\n",
+					"AZURE_SEARCH_KEY = os.environ['AZURE_SEARCH_KEY']\n",
+					"search_service = \"mmlspark-azure-search\"\n",
+					"search_index = \"test-33467690\"\n",
+					"\n",
+					"df = spark.createDataFrame([(\"upload\", \"0\", \"https://mmlspark.blob.core.windows.net/datasets/DSIR/test1.jpg\"),\n",
+					"                            (\"upload\", \"1\", \"https://mmlspark.blob.core.windows.net/datasets/DSIR/test2.jpg\")],\n",
+					"                           [\"searchAction\", \"id\", \"url\"])\n",
+					"\n",
+					"tdf = AnalyzeImage()\\\n",
+					"    .setSubscriptionKey(VISION_API_KEY)\\\n",
+					"    .setLocation(\"eastus\")\\\n",
+					"    .setImageUrlCol(\"url\")\\\n",
+					"    .setOutputCol(\"analyzed\")\\\n",
+					"    .setErrorCol(\"errors\")\\\n",
+					"    .setVisualFeatures([\"Categories\", \"Tags\", \"Description\", \"Faces\", \"ImageType\", \"Color\", \"Adult\"])\\\n",
+					"    .transform(df).select(\"*\", \"analyzed.*\")\\\n",
+					"    .drop(\"errors\", \"analyzed\")\n",
+					"\n",
+					"tdf.writeToAzureSearch(subscriptionKey=AZURE_SEARCH_KEY,\n",
+					"                       actionCol=\"searchAction\",\n",
+					"                       serviceName=search_service,\n",
+					"                       indexName=search_index,\n",
+					"                       keyCol=\"id\")\n",
+					""
+				]
+			}
+		]
+	}
+}

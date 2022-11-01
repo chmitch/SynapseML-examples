@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "CREATE TABLE [dbo].[DimCustomer3](\n\t[CustomerKey] [int] NOT NULL,\n\t[GeographyKey] [int] NULL,\n\t[CustomerAlternateKey] [nvarchar](15) NOT NULL,\n\t[Title] [nvarchar](8) NULL,\n\t[FirstName] [nvarchar](50) NULL,\n\t[MiddleName] [nvarchar](50) NULL,\n\t[LastName] [nvarchar](50) NULL,\n\t[NameStyle] [bit] NULL,\n\t[BirthDate] [date] NULL,\n\t[MaritalStatus] [nchar](1) NULL,\n\t[Suffix] [nvarchar](10) NULL,\n\t[Gender] [nvarchar](1) NULL,\n\t[EmailAddress] [nvarchar](50) NULL,\n\t[YearlyIncome] [money] NULL,\n\t[TotalChildren] [tinyint] NULL,\n\t[NumberChildrenAtHome] [tinyint] NULL,\n\t[EnglishEducation] [nvarchar](40) NULL,\n\t[SpanishEducation] [nvarchar](40) NULL,\n\t[FrenchEducation] [nvarchar](40) NULL,\n\t[EnglishOccupation] [nvarchar](100) NULL,\n\t[SpanishOccupation] [nvarchar](100) NULL,\n\t[FrenchOccupation] [nvarchar](100) NULL,\n\t[HouseOwnerFlag] [nchar](1) NULL,\n\t[NumberCarsOwned] [tinyint] NULL,\n\t[AddressLine1] [nvarchar](120) NULL,\n\t[AddressLine2] [nvarchar](120) NULL,\n\t[Phone] [nvarchar](20) NULL,\n\t[DateFirstPurchase] [date] NULL,\n\t[CommuteDistance] [nvarchar](15) NULL\n) WITH (DISTRIBUTION = HASH(CustomerKey, CustomerAlternateKey))",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SampleSQL",
+				"poolName": "SampleSQL"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

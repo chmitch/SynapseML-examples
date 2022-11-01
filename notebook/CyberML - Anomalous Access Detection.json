@@ -1,0 +1,1244 @@
+{
+	"name": "CyberML - Anomalous Access Detection",
+	"properties": {
+		"folder": {
+			"name": "other"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "synapsemlpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "b5aea556-582d-43ec-9f42-f02ed6e646f7"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"76645ec9-73ae-4474-8957-fa78eddef6bb": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "0",
+										"1": "fin_user_20",
+										"2": "hr_res_0",
+										"3": "15.441306308335696",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_26",
+										"2": "eng_res_13",
+										"3": "15.440559754010902",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_0",
+										"2": "hr_res_0",
+										"3": "15.439569224776385",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_13",
+										"2": "hr_res_0",
+										"3": "15.437290802531557",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_28",
+										"2": "hr_res_12",
+										"3": "15.411064145287337",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_28",
+										"2": "hr_res_37",
+										"3": "15.407516791551886",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_11",
+										"2": "eng_res_13",
+										"3": "15.40513918070169",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_29",
+										"2": "hr_res_0",
+										"3": "15.399189609348237",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_19",
+										"2": "eng_res_13",
+										"3": "15.38885565515012",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_28",
+										"2": "hr_res_3",
+										"3": "15.387821791070477",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_28",
+										"2": "hr_res_11",
+										"3": "15.3875481112222",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_28",
+										"2": "hr_res_48",
+										"3": "15.376843098410507",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "eng_res_13",
+										"3": "15.375511059672617",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_15",
+										"2": "hr_res_23",
+										"3": "15.37243328479445",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_28",
+										"2": "hr_res_17",
+										"3": "15.372307621002848",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_28",
+										"2": "hr_res_43",
+										"3": "15.36330894276664",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_21",
+										"2": "eng_res_13",
+										"3": "15.362526979726946",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_28",
+										"2": "eng_res_20",
+										"3": "15.357689523007432",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_26",
+										"2": "hr_res_30",
+										"3": "15.353361447520735",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_15",
+										"2": "hr_res_12",
+										"3": "15.351877354681507",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_26",
+										"2": "hr_res_34",
+										"3": "15.348698638919446",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_29",
+										"2": "eng_res_13",
+										"3": "15.348554128213618",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_25",
+										"2": "eng_res_24",
+										"3": "15.347604334442389",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_8",
+										"2": "eng_res_9",
+										"3": "15.345555687606161",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_8",
+										"2": "hr_res_12",
+										"3": "15.340443491106294",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_0",
+										"2": "hr_res_33",
+										"3": "15.339090262331695",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_0",
+										"2": "hr_res_23",
+										"3": "15.337609645685244",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_32",
+										"2": "hr_res_23",
+										"3": "15.33565428286661",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_12",
+										"2": "eng_res_13",
+										"3": "15.33022024712557",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_28",
+										"2": "eng_res_17",
+										"3": "15.328271441015373",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_8",
+										"2": "hr_res_24",
+										"3": "15.327414074341888",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_8",
+										"2": "eng_res_24",
+										"3": "15.325595677972327",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_25",
+										"2": "hr_res_40",
+										"3": "15.324207381451682",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_31",
+										"2": "hr_res_10",
+										"3": "15.322026862911763",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_23",
+										"2": "hr_res_33",
+										"3": "15.322005647926964",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_8",
+										"2": "hr_res_46",
+										"3": "15.320760153185985",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_19",
+										"3": "15.320621685303628",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_1",
+										"2": "eng_res_13",
+										"3": "15.319459532147604",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_24",
+										"2": "eng_res_9",
+										"3": "15.31843078165929",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_25",
+										"2": "hr_res_7",
+										"3": "15.318143956453456",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_31",
+										"2": "hr_res_30",
+										"3": "15.317792196130014",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "eng_user_10",
+										"2": "hr_res_0",
+										"3": "15.31595536571001",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_25",
+										"2": "hr_res_44",
+										"3": "15.313708399153832",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_30",
+										"2": "hr_res_45",
+										"3": "15.312738900546675",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_11",
+										"2": "hr_res_12",
+										"3": "15.312178672014229",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_11",
+										"2": "hr_res_49",
+										"3": "15.311889872336854",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_8",
+										"2": "hr_res_47",
+										"3": "15.311165362188646",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_13",
+										"2": "eng_res_13",
+										"3": "15.311107768754614",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_26",
+										"2": "hr_res_17",
+										"3": "15.311079064896134",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_26",
+										"2": "hr_res_14",
+										"3": "15.310436148057663",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_32",
+										"2": "hr_res_37",
+										"3": "15.307867037390574",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_26",
+										"2": "hr_res_21",
+										"3": "15.304853401514528",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_31",
+										"2": "hr_res_45",
+										"3": "15.299819916153737",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_25",
+										"2": "eng_res_2",
+										"3": "15.299435887063613",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_21",
+										"2": "hr_res_33",
+										"3": "15.299195475122795",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_34",
+										"3": "15.298995935565689",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_15",
+										"3": "15.298018829865415",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "eng_user_1",
+										"2": "hr_res_0",
+										"3": "15.296446823780046",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_15",
+										"2": "hr_res_4",
+										"3": "15.296173999089794",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_23",
+										"2": "hr_res_12",
+										"3": "15.296007712377788",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_8",
+										"2": "hr_res_2",
+										"3": "15.295292433916574",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_13",
+										"2": "eng_res_9",
+										"3": "15.293064017407344",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_54",
+										"3": "15.291420287064446",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_32",
+										"2": "eng_res_24",
+										"3": "15.29083837914623",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_19",
+										"2": "eng_res_9",
+										"3": "15.290745949652269",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_23",
+										"3": "15.288939491445195",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_8",
+										"2": "hr_res_19",
+										"3": "15.287165865914295",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_8",
+										"2": "hr_res_16",
+										"3": "15.284617991744913",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_67",
+										"3": "15.284014957699542",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_66",
+										"3": "15.283005802154738",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_17",
+										"2": "fin_res_55",
+										"3": "15.280183556213673",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_30",
+										"2": "hr_res_44",
+										"3": "15.279697756180479",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_31",
+										"3": "15.279471627060756",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_26",
+										"3": "15.278623753290374",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_26",
+										"2": "eng_res_15",
+										"3": "15.27835001710234",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_4",
+										"3": "15.277033419270206",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_31",
+										"2": "hr_res_48",
+										"3": "15.276400440968496",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_32",
+										"2": "hr_res_35",
+										"3": "15.276040971348266",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_1",
+										"2": "fin_res_19",
+										"3": "15.275789429789436",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_32",
+										"2": "hr_res_20",
+										"3": "15.275499988626263",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_11",
+										"2": "hr_res_20",
+										"3": "15.274867019821865",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_46",
+										"3": "15.274112016519679",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_11",
+										"2": "eng_res_22",
+										"3": "15.274057853716009",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_19",
+										"2": "hr_res_45",
+										"3": "15.273889522885364",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_17",
+										"2": "fin_res_56",
+										"3": "15.273721636341739",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_25",
+										"2": "eng_res_18",
+										"3": "15.273681614493755",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_32",
+										"2": "eng_res_22",
+										"3": "15.272947449608134",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_13",
+										"2": "fin_res_32",
+										"3": "15.27232375695702",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_11",
+										"2": "eng_res_1",
+										"3": "15.269412134055019",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_9",
+										"2": "hr_res_30",
+										"3": "15.2685610498985",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_17",
+										"2": "hr_res_12",
+										"3": "15.266762374973144",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_27",
+										"2": "hr_res_32",
+										"3": "15.26584715019264",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_21",
+										"2": "hr_res_37",
+										"3": "15.265806010482368",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_68",
+										"3": "15.264395029502191",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_14",
+										"2": "fin_res_74",
+										"3": "15.263673089940784",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_17",
+										"2": "fin_res_62",
+										"3": "15.26350150207811",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "hr_user_20",
+										"2": "fin_res_36",
+										"3": "15.263112640176237",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_15",
+										"2": "eng_res_16",
+										"3": "15.2629338681837",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_0",
+										"2": "hr_res_40",
+										"3": "15.262575185232398",
+										"4": "2022-03-08 19:11:15.071"
+									},
+									{
+										"0": "0",
+										"1": "fin_user_24",
+										"2": "hr_res_48",
+										"3": "15.262263075137586",
+										"4": "2022-03-08 19:11:15.071"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "tenant_id",
+										"type": "int"
+									},
+									{
+										"key": "1",
+										"name": "user",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "res",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "anomaly_score",
+										"type": "double"
+									},
+									{
+										"key": "4",
+										"name": "timestamp",
+										"type": "timestamp"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "sum",
+									"categoryFieldKeys": [
+										"1"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/61691a9f-545c-41c4-baf2-d901d60ef9aa/resourceGroups/cgmsynapsetest/providers/Microsoft.Synapse/workspaces/cgmsynapsetest/bigDataPools/synapsemlpool",
+				"name": "synapsemlpool",
+				"type": "Spark",
+				"endpoint": "https://cgmsynapsetest.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/synapsemlpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.1",
+				"nodeCount": 3,
+				"cores": 8,
+				"memory": 56,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"source": [
+					"# CyberML - Anomalous Access Detection\n",
+					"\n",
+					"Here we demonstrate a novel CyberML model which can learn user access patterns and then automatically detect anomalous user access based on learned behavior.\n",
+					"The model internally uses Collaborative Filtering for Implicit Feedback as published here: http://yifanhu.net/PUB/cf.pdf\n",
+					"and is based on Apache Spark's implementation of this: https://spark.apache.org/docs/2.2.0/ml-collaborative-filtering.html.\n",
+					"\n",
+					"This notebook demonstrates a usage example of Anomalous Resource Access model.\n",
+					"All the model requires is a dataset in which there are 'users' which access 'resources'.\n",
+					"The model is based on Collaborative Filtering and it uses Machine Learning to learn access patterns of users and resources.\n",
+					"When a user accesses a resource which is outside of the user's learned profile then this access recieves a high anomaly score.\n",
+					"\n",
+					"In this notebook we provide a usage example and a synthetic dataset in which there are 3 departments:\n",
+					"(1) Finance, (2) HR and (3) Engineering.\n",
+					"In the training data users access only a subset of resources from their own departments.\n",
+					"To evaluate the model we use two datasets.\n",
+					"The first contains access patterns unseen during training in which users access resources within their departments (again, resources they didn't access during training but within their department).\n",
+					"The latter contains users accessing resources from outside their department.\n",
+					"We then use the model to assign anomaly scores expecting that the first get low anomaly scores and the latter recieve high anomaly scores.\n",
+					"This is what this example demonstrates.\n",
+					"\n",
+					"Note: the data does NOT contain information about departments, this information is implictly learned by the model by analyzing the access patterns."
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"# Create an Azure Databricks cluster and install the following libs\n",
+					"\n",
+					"1. In Cluster Libraries install from library source Maven:\n",
+					"Coordinates: com.microsoft.azure:synapseml_2.12:0.9.5\n",
+					"Repository: https://mmlspark.azureedge.net/maven\n",
+					"\n",
+					"2. In Cluster Libraries install from PyPI the library called plotly"
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"# Setup & Initialization"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"%%configure -f\r\n",
+					"{\r\n",
+					"  \"name\": \"synapseml\",\r\n",
+					"  \"conf\": {\r\n",
+					"      \"spark.jars.packages\": \"com.microsoft.azure:synapseml_2.12:0.9.5-13-d1b51517-SNAPSHOT\",\r\n",
+					"      \"spark.jars.repositories\": \"https://mmlspark.azureedge.net/maven\",\r\n",
+					"      \"spark.jars.excludes\": \"org.scala-lang:scala-reflect,org.apache.spark:spark-tags_2.12,org.scalactic:scalactic_2.12,org.scalatest:scalatest_2.12\",\r\n",
+					"      \"spark.yarn.user.classpath.first\": \"true\"\r\n",
+					"  }\r\n",
+					"}"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# this is used to produce the synthetic dataset for this test\n",
+					"from synapse.ml.cyber.dataset import DataFactory\n",
+					"\n",
+					"# the access anomalies model generator\n",
+					"from synapse.ml.cyber.anomaly.collaborative_filtering import AccessAnomaly\n",
+					"\n",
+					"from pyspark.sql import functions as f, types as t"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"#Specify the name of the storage account that is associated with Synapse\r\n",
+					"storageAccountName = \"cgmsynapsetest\"\r\n",
+					"#Specify the container you created in Storage account, you could also initialize a new name here, and Synapse will help you create that container automatically.\r\n",
+					"containerName = \"default\"\r\n",
+					"\r\n",
+					"filePath = \"abfss://\" + containerName + \"@\" + storageAccountName + \".dfs.core.windows.net/checkpoint_path/\"\r\n",
+					"spark.sparkContext.setCheckpointDir(filePath)"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"# Loadup datasets"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"factory = DataFactory(\n",
+					"  num_hr_users = 25,\n",
+					"  num_hr_resources = 50,\n",
+					"  num_fin_users = 35,\n",
+					"  num_fin_resources = 75,\n",
+					"  num_eng_users = 15,\n",
+					"  num_eng_resources = 25,\n",
+					"  single_component = True\n",
+					")\n",
+					"\n",
+					"training_pdf = factory.create_clustered_training_data(ratio=0.4)\n",
+					"\n",
+					"# a tenant id is used when independant datasets originate from different tenants, in this example we set all tenants-ids to the same value\n",
+					"training_df = spark.createDataFrame(training_pdf).withColumn('tenant_id', f.lit(0))\n",
+					"ingroup_df = spark.createDataFrame(factory.create_clustered_intra_test_data(training_pdf)).withColumn('tenant_id', f.lit(0))\n",
+					"outgroup_df = spark.createDataFrame(factory.create_clustered_inter_test_data()).withColumn('tenant_id', f.lit(0))"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"training_df.show()"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"print(training_df.count())\n",
+					"print(ingroup_df.count())\n",
+					"print(outgroup_df.count())"
+				],
+				"execution_count": 6
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"# Model setup & training"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"access_anomaly = AccessAnomaly(\n",
+					"  tenantCol='tenant_id',\n",
+					"  userCol='user',\n",
+					"  resCol='res',\n",
+					"  likelihoodCol='likelihood',\n",
+					"  maxIter=1000\n",
+					")"
+				],
+				"execution_count": 7
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"model = access_anomaly.fit(training_df)"
+				],
+				"execution_count": 8
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"# Apply model & show result stats"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"ingroup_scored_df = model.transform(ingroup_df)"
+				],
+				"execution_count": 9
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"ingroup_scored_df.agg(\n",
+					"  f.min('anomaly_score').alias('min_anomaly_score'),\n",
+					"  f.max('anomaly_score').alias('max_anomaly_score'),\n",
+					"  f.mean('anomaly_score').alias('mean_anomaly_score'),\n",
+					"  f.stddev('anomaly_score').alias('stddev_anomaly_score'),\n",
+					").show()"
+				],
+				"execution_count": 10
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"outgroup_scored_df = model.transform(outgroup_df)"
+				],
+				"execution_count": 11
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"outgroup_scored_df.agg(\n",
+					"  f.min('anomaly_score').alias('min_anomaly_score'),\n",
+					"  f.max('anomaly_score').alias('max_anomaly_score'),\n",
+					"  f.mean('anomaly_score').alias('mean_anomaly_score'),\n",
+					"  f.stddev('anomaly_score').alias('stddev_anomaly_score'),\n",
+					").show()"
+				],
+				"execution_count": 12
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"# Examine results"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"#\n",
+					"# Select a subset of results to send to Log Analytics\n",
+					"#\n",
+					"\n",
+					"full_res_df = outgroup_scored_df.orderBy(f.desc('anomaly_score')).cache()\n",
+					"\n",
+					"from pyspark.sql.window import Window\n",
+					"\n",
+					"w = Window.partitionBy(\n",
+					"                  'tenant_id',\n",
+					"                  'user',\n",
+					"                  'res'  \n",
+					"                ).orderBy(\n",
+					"                  f.desc('anomaly_score')\n",
+					"                )\n",
+					"\n",
+					"# select values above threshold\n",
+					"results_above_threshold = full_res_df.filter(full_res_df.anomaly_score > 1.0)\n",
+					"\n",
+					"# get distinct resource/user and corresponding timestamp and highest score\n",
+					"results_to_la = results_above_threshold.withColumn(\n",
+					"                  'index', f.row_number().over(w)\n",
+					"                  ).orderBy(\n",
+					"                    f.desc('anomaly_score')\n",
+					"                  ).select(\n",
+					"                    'tenant_id',\n",
+					"                    f.col('user'),\n",
+					"                    f.col('res'),\n",
+					"                    'anomaly_score'\n",
+					"                  ).where(\n",
+					"                    'index == 1'\n",
+					"                  ).limit(100).cache()\n",
+					"\n",
+					"# add a fake timestamp to the results\n",
+					"results_to_la = results_to_la.withColumn('timestamp', f.current_timestamp())\n",
+					"  \n",
+					"display(results_to_la)"
+				],
+				"execution_count": 13
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"# Display all resource accesses by users with highest anomalous score"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from plotly import __version__\n",
+					"from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot, offline\n",
+					"\n",
+					"import numpy as np\n",
+					"import pandas as pd\n",
+					"\n",
+					"print (__version__) # requires version >= 1.9.0\n",
+					"\n",
+					"# run plotly in offline mode\n",
+					"offline.init_notebook_mode()"
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"#Find all server accesses of users with high predicted scores\n",
+					"# For display, limit to top 25 results\n",
+					"results_to_display = results_to_la.orderBy(\n",
+					"                  f.desc('anomaly_score')\n",
+					"                ).limit(25).cache()\n",
+					"interesting_records = full_res_df.join(results_to_display, ['user'], 'left_semi')\n",
+					"non_anomalous_records = interesting_records.join(results_to_display, ['user', 'res'], 'left_anti')\n",
+					"\n",
+					"top_non_anomalous_records = non_anomalous_records.groupBy(\n",
+					"                          'tenant_id',\n",
+					"                          'user', \n",
+					"                          'res'\n",
+					"                        ).agg(\n",
+					"                          f.count('*').alias('count'),\n",
+					"                        ).select(\n",
+					"                          f.col('tenant_id'),\n",
+					"                          f.col('user'),\n",
+					"                          f.col('res'),\n",
+					"                          'count'\n",
+					"                        )\n",
+					"\n",
+					"#pick only a subset of non-anomalous record for UI\n",
+					"w = Window.partitionBy(\n",
+					"                  'tenant_id',\n",
+					"                  'user',\n",
+					"                ).orderBy(\n",
+					"                  f.desc('count')\n",
+					"                )\n",
+					"\n",
+					"# pick top non-anomalous set\n",
+					"top_non_anomalous_accesses = top_non_anomalous_records.withColumn(\n",
+					"                  'index', f.row_number().over(w)\n",
+					"                  ).orderBy(\n",
+					"                    f.desc('count')\n",
+					"                  ).select(\n",
+					"                    'tenant_id',\n",
+					"                    f.col('user'),\n",
+					"                    f.col('res'),\n",
+					"                    f.col('count')\n",
+					"                  ).where(\n",
+					"                    'index in (1,2,3,4,5)'\n",
+					"                  ).limit(25)\n",
+					"\n",
+					"# add back anomalous record\n",
+					"fileShare_accesses = (top_non_anomalous_accesses\n",
+					"                          .select('user', 'res', 'count')\n",
+					"                          .union(results_to_display.select('user', 'res', f.lit(1).alias('count'))).cache())"
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# get unique users and file shares\n",
+					"high_scores_df = fileShare_accesses.toPandas()\n",
+					"unique_arr = np.append(high_scores_df.user.unique(), high_scores_df.res.unique())\n",
+					"\n",
+					"unique_df = pd.DataFrame(data = unique_arr, columns = ['name'])\n",
+					"unique_df['index'] = range(0, len(unique_df.index))\n",
+					"\n",
+					"# create index for source & target and color for the normal accesses\n",
+					"normal_line_color = 'rgba(211, 211, 211, 0.8)'\n",
+					"anomolous_color = 'red'\n",
+					"x = pd.merge(high_scores_df, unique_df, how='left', left_on='user', right_on='name').drop(['name'], axis=1).rename(columns={'index' : 'userIndex'})\n",
+					"all_access_index_df = pd.merge(x, unique_df, how='left', left_on='res', right_on='name').drop(['name'], axis=1).rename(columns={'index' : 'resIndex'})\n",
+					"all_access_index_df['color'] = normal_line_color\n",
+					"\n",
+					"# results_to_display index, color and \n",
+					"y = results_to_display.toPandas().drop(['tenant_id', 'timestamp', 'anomaly_score'], axis=1)\n",
+					"y = pd.merge(y, unique_df, how='left', left_on='user', right_on='name').drop(['name'], axis=1).rename(columns={'index' : 'userIndex'})\n",
+					"high_scores_index_df = pd.merge(y, unique_df, how='left', left_on='res', right_on='name').drop(['name'], axis=1).rename(columns={'index' : 'resIndex'})\n",
+					"high_scores_index_df['count'] = 1\n",
+					"high_scores_index_df['color'] = anomolous_color\n",
+					"\n",
+					"# substract 1 for the red entries in all_access df\n",
+					"hsi_df = high_scores_index_df[['user','res', 'count']].rename(columns={'count' : 'hsiCount'})\n",
+					"all_access_updated_count_df = pd.merge(all_access_index_df, hsi_df, how='left', left_on=['user', 'res'], right_on=['user', 'res'])\n",
+					"all_access_updated_count_df['count'] = np.where(all_access_updated_count_df['hsiCount']==1, all_access_updated_count_df['count'] - 1, all_access_updated_count_df['count'])\n",
+					"all_access_updated_count_df = all_access_updated_count_df.loc[all_access_updated_count_df['count'] > 0]\n",
+					"all_access_updated_count_df = all_access_updated_count_df[['user','res', 'count', 'userIndex', 'resIndex', 'color']]\n",
+					"\n",
+					"# combine the two tables\n",
+					"frames = [all_access_updated_count_df, high_scores_index_df]\n",
+					"display_df = pd.concat(frames, sort=True)\n",
+					"# display_df.head()"
+				],
+				"execution_count": 16
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"data_trace = dict(\n",
+					"    type='sankey',\n",
+					"    domain = dict(\n",
+					"      x =  [0,1],\n",
+					"      y =  [0,1]\n",
+					"    ),\n",
+					"    orientation = \"h\",\n",
+					"    valueformat = \".0f\",\n",
+					"    node = dict(\n",
+					"      pad = 10,\n",
+					"      thickness = 30,\n",
+					"      line = dict(\n",
+					"        color = \"black\",\n",
+					"        width = 0\n",
+					"      ),\n",
+					"      label = unique_df['name'].dropna(axis=0, how='any')\n",
+					"    ),\n",
+					"    link = dict(\n",
+					"      source = display_df['userIndex'].dropna(axis=0, how='any'),\n",
+					"      target = display_df['resIndex'].dropna(axis=0, how='any'),\n",
+					"      value = display_df['count'].dropna(axis=0, how='any'),\n",
+					"      color = display_df['color'].dropna(axis=0, how='any'),\n",
+					"  )\n",
+					")\n",
+					"\n",
+					"layout =  dict(\n",
+					"    title = \"All resources accessed by users with highest anomalous scores\",\n",
+					"    height = 772,\n",
+					"    font = dict(\n",
+					"      size = 10\n",
+					"    ),    \n",
+					")\n",
+					"\n",
+					"fig = dict(data=[data_trace], layout=layout)\n",
+					"\n",
+					"p = plot(fig, output_type='div')\n",
+					"\n",
+					"displayHTML(p)"
+				],
+				"execution_count": 17
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					""
+				]
+			}
+		]
+	}
+}

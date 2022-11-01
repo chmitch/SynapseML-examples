@@ -1,0 +1,216 @@
+{
+	"name": "Classification - Adult Census with Vowpal Wabbit",
+	"properties": {
+		"folder": {
+			"name": "classification"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "synapsemlpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "5d1809ad-2993-4fa1-a585-b5e536e9755c"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/61691a9f-545c-41c4-baf2-d901d60ef9aa/resourceGroups/cgmsynapsetest/providers/Microsoft.Synapse/workspaces/cgmsynapsetest/bigDataPools/synapsemlpool",
+				"name": "synapsemlpool",
+				"type": "Spark",
+				"endpoint": "https://cgmsynapsetest.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/synapsemlpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.1",
+				"nodeCount": 3,
+				"cores": 8,
+				"memory": 56,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"source": [
+					"# Classification - Adult Census using Vowpal Wabbit in SynapseML\n",
+					"\n",
+					"In this example, we predict incomes from the *Adult Census* dataset using Vowpal Wabbit (VW) classifier in SynapseML.\n",
+					"First, we read the data and split it into train and test sets as in this [example](https://github.com/Microsoft/SynapseML/blob/master/notebooks/Classification%20-%20Adult%20Census.ipynb\n",
+					")."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"%%configure -f\r\n",
+					"{\r\n",
+					"  \"name\": \"synapseml\",\r\n",
+					"  \"conf\": {\r\n",
+					"      \"spark.jars.packages\": \"com.microsoft.azure:synapseml_2.12:0.9.5-13-d1b51517-SNAPSHOT\",\r\n",
+					"      \"spark.jars.repositories\": \"https://mmlspark.azureedge.net/maven\",\r\n",
+					"      \"spark.jars.excludes\": \"org.scala-lang:scala-reflect,org.apache.spark:spark-tags_2.12,org.scalactic:scalactic_2.12,org.scalatest:scalatest_2.12\",\r\n",
+					"      \"spark.yarn.user.classpath.first\": \"true\"\r\n",
+					"  }\r\n",
+					"}"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"import os\n",
+					"if os.environ.get(\"AZURE_SERVICE\", None) == \"Microsoft.ProjectArcadia\":\n",
+					"    from pyspark.sql import SparkSession\n",
+					"    spark = SparkSession.builder.getOrCreate()"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"data = spark.read.parquet(\"wasbs://publicwasb@mmlspark.blob.core.windows.net/AdultCensusIncome.parquet\")\n",
+					"data = data.select([\"education\", \"marital-status\", \"hours-per-week\", \"income\"])\n",
+					"train, test = data.randomSplit([0.75, 0.25], seed=123)\n",
+					"train.limit(10).toPandas()"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Next, we define a pipeline that includes feature engineering and training of a VW classifier. We use a featurizer provided by VW that hashes the feature names. \n",
+					"Note that VW expects classification labels being -1 or 1. Thus, the income category is mapped to this space before feeding training data into the pipeline."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from pyspark.sql.functions import when, col\n",
+					"from pyspark.ml import Pipeline\n",
+					"from synapse.ml.vw import VowpalWabbitFeaturizer, VowpalWabbitClassifier\n",
+					"\n",
+					"# Define classification label\n",
+					"train = train.withColumn(\"label\", when(col(\"income\").contains(\"<\"), 0.0).otherwise(1.0)).repartition(1).cache()\n",
+					"print(train.count())\n",
+					"\n",
+					"# Specify featurizer\n",
+					"vw_featurizer = VowpalWabbitFeaturizer(inputCols=[\"education\", \"marital-status\", \"hours-per-week\"],\n",
+					"                                       outputCol=\"features\")\n",
+					"\n",
+					"# Define VW classification model\n",
+					"args = \"--loss_function=logistic --quiet --holdout_off\"\n",
+					"vw_model = VowpalWabbitClassifier(featuresCol=\"features\",\n",
+					"                                  labelCol=\"label\",\n",
+					"                                  args=args,\n",
+					"                                  numPasses=10)\n",
+					"\n",
+					"# Create a pipeline\n",
+					"vw_pipeline = Pipeline(stages=[vw_featurizer, vw_model])"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Then, we are ready to train the model by fitting the pipeline with the training data."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# Train the model\n",
+					"vw_trained = vw_pipeline.fit(train)"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"After the model is trained, we apply it to predict the income of each sample in the test set."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# Making predictions\n",
+					"test = test.withColumn(\"label\", when(col(\"income\").contains(\"<\"), 0.0).otherwise(1.0))\n",
+					"prediction = vw_trained.transform(test)\n",
+					"#prediction.limit(10).toPandas()"
+				],
+				"execution_count": 7
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"Finally, we evaluate the model performance using `ComputeModelStatistics` function which will compute confusion matrix, accuracy, precision, recall, and AUC by default for classificaiton models."
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"from synapse.ml.train import ComputeModelStatistics\n",
+					"metrics = ComputeModelStatistics(evaluationMetric=\"classification\", \n",
+					"                                 labelCol=\"label\", \n",
+					"                                 scoredLabelsCol=\"prediction\").transform(prediction)\n",
+					"metrics.toPandas()"
+				],
+				"execution_count": 8
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				]
+			}
+		]
+	}
+}
